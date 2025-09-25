@@ -21,5 +21,6 @@ jobs:
     - name: Install Dependencies
       run: npm install
 
-    - name: Deploy to Vercel
-      run: npx vercel --prod --token=${{ secrets.VERCEL_TOKEN }}
+    - name: Deploy with Vercel
+      run: npx vercel --prod --yes --confirm --token=${{ secrets.VERCEL_TOKEN }}
+
