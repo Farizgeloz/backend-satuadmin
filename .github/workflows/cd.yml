@@ -21,6 +21,10 @@ jobs:
     - name: Install Dependencies
       run: npm install
 
+    # 🔗 Link project ke Vercel (sekali aja, lalu tersimpan di .vercel/)
+    - name: Link to Vercel Project
+      run: npx vercel link --yes --token=${{ secrets.VERCEL_TOKEN }}
+
+    # 🚀 Deploy ke Vercel
     - name: Deploy with Vercel
       run: npx vercel --prod --yes --confirm --token=${{ secrets.VERCEL_TOKEN }}
-
