@@ -47,6 +47,11 @@ const getRouteAndMethodPathFile = function (dirApi) {
     };
 
     // Baca direktori dalam direktori /api/*
+    if (!Fs.existsSync(dirApi)) {
+        console.warn(`⚠️ Folder API tidak ditemukan: ${dirApi}`);
+        return result; // kosong aja biar nggak error
+    }
+
     const items = Fs.readdirSync(dirApi);
 
     for (const name of items) {
