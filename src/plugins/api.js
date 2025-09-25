@@ -4,77 +4,80 @@ const Fs = require('fs');
 const Path = require('path');
 const Crypto = require('crypto');
 
-
 exports.plugin = {
     name: 'api',
-    register: async function (server, options) {
+    register: async (server, options = {}) => {
 
-        const dirApi = options?.dirApi;
+        const dirApi = options.dirApi;
         if (!dirApi) {
-            throw new Error('Missing required option: dirApi');
+            console.warn('⚠️ Missing required option: dirApi, plugin API tidak didaftarkan.');
+            return;
         }
 
         const { routesPath, methodsPath } = getRouteAndMethodPathFile(dirApi);
 
-        // Load and register methods
+        // Daftarkan methods
         methodsPath.forEach((path) => {
+            try {
+                const methods = require(path);
 
-            const methods = require(path);
-
-            methods.forEach(({ name, method }) => {
-
-                server.method(name, method, {
-                    cache: server.app.$config.OPTION_CACHE,
-                    generateKey: generateCacheKey
+                methods.forEach(({ name, method }) => {
+                    server.method(name, method, {
+                        cache: server.app?.$config?.OPTION_CACHE || {},
+                        generateKey: generateCacheKey
+                    });
                 });
-
-            });
-
+            }
+            catch (err) {
+                console.warn(`Gagal register method ${path}: ${err.message}`);
+            }
         });
 
-        // Load and register routes
-        await server.register(routesPath.map((path) => require(path)));
+        // Daftarkan routes
+        for (const pathRoute of routesPath) {
+            try {
+                const routePlugin = require(pathRoute);
 
+                await server.register(routePlugin);
+            }
+            catch (err) {
+                console.warn(`Gagal register route ${pathRoute}: ${err.message}`);
+            }
+        }
+
+        console.info(`Plugin API selesai register: ${routesPath.length} routes, ${methodsPath.length} methods`);
     }
 };
 
+// ==========================
+// Helper functions
+// ==========================
 
-const getRouteAndMethodPathFile = function (dirApi) {
+const getRouteAndMethodPathFile = (dirApi) => {
 
-    const result = {
-        routesPath: [],
-        methodsPath: []
-    };
+    const result = { routesPath: [], methodsPath: [] };
 
-    // Baca direktori dalam direktori /api/*
     if (!Fs.existsSync(dirApi)) {
         console.warn(`⚠️ Folder API tidak ditemukan: ${dirApi}`);
-        return result; // kosong aja biar nggak error
+        return result;
     }
 
     const items = Fs.readdirSync(dirApi);
 
     for (const name of items) {
+        const subPath = Path.join(dirApi, name);
 
-        // jika directory dimulai #, berarti dianggap sebagai direktori group api
-        if (name.startsWith('#')) {
-
-            const subdir = Path.join(dirApi, name);
-
-            // recursive
-            const subResult = getRouteAndMethodPathFile(subdir);
-
+        // Jika directory dimulai #, recursive
+        if (Fs.statSync(subPath).isDirectory() && name.startsWith('#')) {
+            const subResult = getRouteAndMethodPathFile(subPath);
             result.routesPath.push(...subResult.routesPath);
             result.methodsPath.push(...subResult.methodsPath);
-
             continue;
         }
 
-        const fileRouteName = `${name}.route.js`;
-        const pathRouteFile = Path.join(dirApi, name, fileRouteName);
-
-        const fileMethodName = `${name}.method.js`;
-        const pathMethodFile = Path.join(dirApi, name, fileMethodName);
+        // Cek route file
+        const pathRouteFile = Path.join(dirApi, name, `${name}.route.js`);
+        const pathMethodFile = Path.join(dirApi, name, `${name}.method.js`);
 
         if (Fs.existsSync(pathRouteFile)) {
             result.routesPath.push(pathRouteFile);
@@ -88,21 +91,22 @@ const getRouteAndMethodPathFile = function (dirApi) {
     return result;
 };
 
-const generateCacheKey = function (...args) {
+const generateCacheKey = (...args) => {
 
     const normalized = args.map(deepSort);
     return Crypto.createHash('md5').update(JSON.stringify(normalized)).digest('hex');
 };
 
-// Rekursif deep sort untuk array & object agar konsisten
-const deepSort = function (value) {
+// Deep sort untuk konsistensi object/array
+const deepSort = (value) => {
 
     if (Array.isArray(value)) {
         return value.map(deepSort);
     }
-    else if (value && typeof value === 'object' && value.constructor === Object) {
-        return Object.keys(value).sort().reduce((acc, key) => {
 
+    if (value && typeof value === 'object' && value.constructor === Object) {
+        return Object.keys(value).sort().reduce((acc, key) => {
+            
             acc[key] = deepSort(value[key]);
             return acc;
         }, {});
