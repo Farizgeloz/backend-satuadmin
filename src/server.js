@@ -27,7 +27,9 @@ const Main = async () => {
         routes: {
             cors: { origin: ['*'], additionalHeaders: ['x-token'] },
             validate: {
-                failAction: (req, h, err) => { throw Boom.badRequest(err.message); }
+                failAction: (req, h, err) => {
+                    throw Boom.badRequest(err.message);
+                }
             }
         }
     });
@@ -37,7 +39,8 @@ const Main = async () => {
     // Plugin App (jika ada)
     try {
         await server.register(require('./plugins/app'));
-    } catch (err) {
+    }
+    catch (err) {
         console.warn('Plugin app gagal register', err.message);
     }
 
@@ -46,11 +49,14 @@ const Main = async () => {
         await server.register({
             plugin: require('./plugins/api'),
             options: {
-                dirApi: Path.join(__dirname, Config.DIRECTORY.SRC, 'api')
+                dirApi: Path.join(__dirname, 'api') // pakai __dirname supaya path benar di Vercel
             },
-            routes: { prefix: Config.PREFIX_ROUTE }
+            routes: {
+                prefix: Config.PREFIX_ROUTE?.trim() ? Config.PREFIX_ROUTE : undefined
+            }
         });
-    } catch (err) {
+    }
+    catch (err) {
         console.warn('Plugin API gagal register', err.message);
     }
 
@@ -69,7 +75,8 @@ const Main = async () => {
     if (!Env.isServerless) {
         await server.start();
         console.info(`Server running at ${server.info.uri}`);
-    } else {
+    }
+    else {
         await server.initialize();
     }
 
