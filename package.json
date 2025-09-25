@@ -1,0 +1,58 @@
+{
+  "name": "mata-prabulinggih",
+  "version": "1.0.0",
+  "private": true,
+  "license": "BSD-3-Clause",
+  "author": "Alfian Wahid",
+  "email": "alfianwahid@hotmail.com",
+  "description": "Sebuah boilerplate sederhana untuk memulai pengembangan REST-API menggunakan framework hapi & knex.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cross-env INSTANCE_ID=0 NODE_ENV=development nodemon index.js --ignore './knex'",
+    "prod": "cross-env INSTANCE_ID=0 NODE_ENV=production nodemon index.js --ignore './knex'",
+    "lint": "eslint ./src",
+    "lintfix": "eslint . --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/probsae/mata-prabulinggih.git"
+  },
+  "keywords": [
+    "hapijs",
+    "knexjs",
+    "mysql"
+  ],
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.888.0",
+    "@aws-sdk/s3-request-presigner": "^3.888.0",
+    "@hapi/boom": "^10.0.1",
+    "@hapi/hapi": "^21.3.10",
+    "@hapi/inert": "^7.1.0",
+    "argon2": "^0.43.0",
+    "bcrypt": "^5.1.1",
+    "cross-env": "^7.0.3",
+    "csv-parse": "^6.1.0",
+    "csv-parser": "^3.2.0",
+    "dotenv": "^16.5.0",
+    "geoip-lite": "^1.4.10",
+    "ioredis": "^5.4.1",
+    "ip": "^2.0.1",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "knex": "^3.1.0",
+    "luxon": "^3.4.4",
+    "minio": "^8.0.5",
+    "moments": "^0.0.2",
+    "mysql": "^2.18.1",
+    "sharp": "^0.34.4",
+    "xlsx": "^0.18.5",
+    "xslx": "^1.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.9",
+    "@babel/eslint-parser": "^7.24.8",
+    "@hapi/eslint-plugin": "^6.0.0",
+    "eslint": "8.57.0",
+    "nodemon": "^3.1.4"
+  }
+}

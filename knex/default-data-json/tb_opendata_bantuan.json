@@ -1,0 +1,74 @@
+	[
+		{
+			"id": 1,
+			"kategori": "Opendata",
+			"seksi": "arti_opendata",
+			"title": "Apa itu Opendata ?",
+			"content": "Open Data atau Data Terbuka adalah data yang dapat diakses, digunakan, dimodifikasi, dan dibagikan kembali oleh siapa saja, untuk tujuan apa pun, tanpa hambatan hukum, teknis, atau finansial. Meskipun begitu, penggunaan Open Data tetap harus mematuhi syarat minimal, seperti mencantumkan sumber (atribusi) atau mengikuti lisensi terbuka yang ditetapkan.",
+			"image": null,
+			"admin": null,
+			"visibilitas": null,
+			"created_at": "2025-09-22 16:34:10",
+			"updated_at": "2025-09-22 16:34:10"
+		},
+		{
+			"id": 2,
+			"kategori": "Opendata",
+			"seksi": "mekanisme",
+			"title": "Mekanisme Pengumpulan Data",
+			"content": "Pengumpulan data adalah proses sistematis untuk memperoleh, mencatat, dan menyimpan informasi dari berbagai sumber, dengan tujuan untuk dianalisis, dilaporkan, dan/atau dipublikasikan. Dalam konteks pemerintahan, organisasi, maupun sistem Open Data, mekanisme ini dilakukan dengan pendekatan yang terstruktur, berjenjang, dan berstandar.",
+			"image": null,
+			"admin": null,
+			"visibilitas": null,
+			"created_at": "2025-09-22 16:34:10",
+			"updated_at": "2025-09-22 16:34:10"
+		},
+		{
+			"id": 3,
+			"kategori": "Opendata",
+			"seksi": "regulasi",
+			"title": "Regulasi dan Kebijakan pendukung",
+			"content": "<p><b>1. Undang-Undang Keterbukaan Informasi Publik</b> (No. 14 Tahun 2008)<br>\r\nRegulasi yang mengatur keterbukaan informasi oleh badan publik untuk publikasi data secara transparan.<br>\r\n<a href=\"https://peraturan.go.id/common/dokumen/ln/2008/uu-14-2008.pdf\" target=\"_blank\">Baca selengkapnya</a></p>\r\n\r\n<p><b>2. Peraturan Pemerintah tentang Pengelolaan Data dan Informasi Pemerintah</b> (PP No. 71 Tahun 2019)<br>\r\nAturan tentang pengelolaan data pemerintah yang inklusif, terintegrasi, dan mudah diakses masyarakat.<br>\r\n<a href=\"https://jdih.setkab.go.id/puu/buka_puu/pp71-2019.pdf\" target=\"_blank\">Baca selengkapnya</a></p>\r\n\r\n<p><b>3. Peraturan Menteri Komunikasi dan Informatika tentang Open Data</b> (Permenkominfo No. 5 Tahun 2020)<br>\r\nMemuat kebijakan teknis penyediaan dan pemanfaatan data terbuka oleh instansi pemerintah.<br>\r\n<a href=\"https://peraturan.go.id/common/dokumen/ln/2020/permenkominfo-5-2020.pdf\" target=\"_blank\">Baca selengkapnya</a></p>\r\n\r\n<p><b>4. Pedoman Umum Open Data Pemerintah</b> (-)<br>\r\nDokumen pedoman teknis penyusunan dan penerapan open data untuk instansi pemerintah.<br>\r\n<a href=\"https://www.data.go.id/assets/uploads/files/Open_Data_Guide_Indonesia.pdf\" target=\"_blank\">Baca selengkapnya</a></p>\r\n\r\n<p><b>5. Undang-Undang Informasi dan Transaksi Elektronik (ITE)</b> (No. 11 Tahun 2008)<br>\r\nMengatur informasi elektronik dan transaksi elektronik yang berkaitan dengan data dan informasi digital.<br>\r\n<a href=\"https://peraturan.go.id/common/dokumen/ln/2008/uu-11-2008.pdf\" target=\"_blank\">Baca selengkapnya</a></p>\r\n\r\n<p><b>6. Peraturan Menteri PANRB tentang Open Government Indonesia</b> (PermenPANRB No. 36 Tahun 2019)<br>\r\nRegulasi mengenai penyelenggaraan pemerintah terbuka di Indonesia, termasuk akses data dan partisipasi publik.<br>\r\n<a href=\"https://www.menpan.go.id/sites/default/files/permendagri_36_2019.pdf\" target=\"_blank\">Baca selengkapnya</a></p>\r\n\r\n<p><b>7. Peraturan Kepala LAN tentang Standar Open Data</b> (Perka LAN No. 7 Tahun 2018)<br>\r\nStandar teknis dan pedoman penerapan data terbuka di instansi pemerintah.<br>\r\n<a href=\"https://www.lan.go.id/berita/perka-lan-nomor-7-tahun-2018-tentang-standar-open-data\" target=\"_blank\">Baca selengkapnya</a></p>\r\n\r\n<p><b>8. Instruksi Presiden tentang Akses Informasi Publik</b> (Inpres No. 3 Tahun 2022)<br>\r\nInstruksi untuk seluruh kementerian/lembaga agar meningkatkan transparansi dan akses data kepada publik.<br>\r\n<a href=\"https://www.setneg.go.id/baca/index/inpres_nomor_3_tahun_2022\" target=\"_blank\">Baca selengkapnya</a></p>\r\n\r\n<p><b>9. Peraturan Komisi Informasi tentang Standar Layanan Informasi Publik</b> (Perkom No. 1 Tahun 2010)<br>\r\nStandar pelayanan informasi publik yang harus dipenuhi badan publik.<br>\r\n<a href=\"https://komisiinformasi.go.id/arsip/permohonan-informasi/standar-layanan-informasi-publik\" target=\"_blank\">Baca selengkapnya</a></p>\r\n\r\n<p><b>10. Peraturan Menteri Dalam Negeri tentang Sistem Pemerintahan Berbasis Elektronik (SPBE)</b> (Permendagri No. 70 Tahun 2019)<br>\r\nRegulasi mengenai tata kelola pemerintahan elektronik termasuk penyediaan data dan informasi secara digital.<br>\r\n<a href=\"https://peraturan.go.id/common/dokumen/ln/2019/permendagri-70-2019.pdf\" target=\"_blank\">Baca selengkapnya</a></p>\r\n",
+			"image": null,
+			"admin": null,
+			"visibilitas": null,
+			"created_at": "2025-09-22 16:34:10",
+			"updated_at": "2025-09-22 16:34:10"
+		},
+		{
+			"id": 4,
+			"kategori": "Dataset",
+			"seksi": "arti_dataset",
+			"title": "Apa itu Dataset?",
+			"content": "Dataset merupakan sekumpulan data  yang terorganisir dalam sebuah format tertentu agar mudah diakses, dianalisis, dan digunakan kembali",
+			"image": null,
+			"admin": null,
+			"visibilitas": null,
+			"created_at": "2025-09-22 16:34:10",
+			"updated_at": "2025-09-22 16:34:10"
+		},
+		{
+			"id": 5,
+			"kategori": "Dataset",
+			"seksi": "cari_dataset",
+			"title": "Cara mencari Dataset",
+			"content": "<p><b>Cara Pertama: Melalui halaman Beranda</b></p>\r\n<ol>\r\n  <li>Masukkan kata kunci pencarian pada kolom \"Cari & Unduh Dataset\", lalu tekan tombol Cari.</li>\r\n  <li>Anda akan diarahkan pada halaman “Pencarian” di mana hasil pencarian berdasarkan keywords akan ditampilkan pada halaman tersebut.</li>\r\n  <li>Juga terdapat filter “Pilih OPD” dan “Pilih Priode” untuk membantu pencarian Anda agar lebih spesifik.</li>\r\n</ol>\r\n\r\n<p><b>Cara Kedua: Melalui halaman Koleksi Dataset</b></p>\r\n<ol>\r\n  <li>Pilih menu “Koleksi Dataset”.</li>\r\n  <li>Masukkan kata kunci pencarian pada kolom “Masukkan Kata kunci”, lalu tekan tombol “Cari”.</li>\r\n  <li>Hasil pencarian Anda akan muncul daftar dataset sesuai kata kunci yang dimasukkan.</li>\r\n  <li>Juga terdapat filter “Pilih OPD” dan “Pilih Priode” untuk membantu pencarian Anda agar lebih spesifik.</li>\r\n</ol>\r\n\r\n<>\r\n<p><b>Cara Ketiga: Melalui halaman Sektor</b></p>\r\n<ol>\r\n  <li>Arahkan pada menu “Sektor”.</li>\r\n  <li>Pilih Sektor (misal: Pendidikan).</li>\r\n  <li>Masukkan kata kunci pencarian pada kolom “Masukkan Kata kunci”, lalu tekan tombol “Cari”.</li>\r\n  <li>Hasil pencarian Anda akan muncul daftar dataset sesuai sektor yang dipilih dan kata kunci yang dimasukkan.</li>\r\n  <li>Juga terdapat filter “Pilih OPD” dan “Pilih Priode” untuk membantu pencarian Anda agar lebih spesifik.</li>\r\n</ol>\r\n</>",
+			"image": null,
+			"admin": null,
+			"visibilitas": null,
+			"created_at": "2025-09-22 16:34:10",
+			"updated_at": "2025-09-22 16:34:10"
+		},
+		{
+			"id": 6,
+			"kategori": "Dataset",
+			"seksi": "unduh_dataset",
+			"title": "Cara mengunduh Dataset",
+			"content": "<p><b>Untuk mengunduh Dataset dapat dilakukan dengan cara sebagai berikut:</b></p>\r\n<ol>\r\n  <li>Pilih salah satu dataset yang ingin diunduh.</li>\r\n  <li>Kemudian Anda akan diarahkan pada laman “Detail Dataset”.</li>\r\n  <li>Arahkan pada tombol “Download Data”.</li>\r\n  <li>Pilih dan klik tombol format dataset yang diinginkan (CSV/ Excel/ Json).</li>\r\n</ol>",
+			"image": null,
+			"admin": null,
+			"visibilitas": null,
+			"created_at": "2025-09-22 16:34:10",
+			"updated_at": "2025-09-22 16:34:10"
+		}
+	]

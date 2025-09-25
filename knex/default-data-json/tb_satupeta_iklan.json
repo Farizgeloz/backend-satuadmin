@@ -1,0 +1,20 @@
+[
+	{
+		"id": 2,
+		"title": "iklan 1",
+		"images": "satupeta/iklan/images/2025-09-21_iklan_1.png",
+		"visibilitas": "Publik",
+		"linked": "null",
+		"created_at": "2025-09-21 01:25:57",
+		"updated_at": "2025-09-21 08:25:57"
+	},
+	{
+		"id": 6,
+		"title": "iklan 2",
+		"images": "satupeta/iklan/images/2025-09-21_iklan_2.png",
+		"visibilitas": "Publik",
+		"linked": "fdgfdg",
+		"created_at": "2025-09-21 01:28:29",
+		"updated_at": "2025-09-21 08:28:29"
+	}
+]

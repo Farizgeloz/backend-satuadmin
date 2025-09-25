@@ -1,0 +1,34 @@
+[
+	{
+		"id": 14,
+		"category": "Beranda",
+		"sub_menu": "",
+		"linked": "/",
+		"created_at": null,
+		"updated_at": null
+	},
+	{
+		"id": 15,
+		"category": "Peta Tematik",
+		"sub_menu": "",
+		"linked": "/Tematik",
+		"created_at": null,
+		"updated_at": null
+	},
+	{
+		"id": 16,
+		"category": "Artikel Seputar Mapset",
+		"sub_menu": "",
+		"linked": "/Berita",
+		"created_at": null,
+		"updated_at": null
+	},
+	{
+		"id": 17,
+		"category": "Tentang",
+		"sub_menu": "",
+		"linked": "/Tentang",
+		"created_at": null,
+		"updated_at": null
+	}
+]

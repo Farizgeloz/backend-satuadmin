@@ -1,0 +1,20 @@
+[
+	{
+		"id": 1,
+		"title": "coba",
+		"images": "satuportal_iklan/images/2025-09-21_coba.png",
+		"visibilitas": "Publik",
+		"linked": "/fdfgggr",
+		"created_at": "2025-09-21 01:16:18",
+		"updated_at": "2025-09-21 08:16:18"
+	},
+	{
+		"id": 2,
+		"title": "coba saja",
+		"images": "satuportal_iklan/images/2025-09-21_coba_saja.jpg",
+		"visibilitas": "Publik",
+		"linked": "",
+		"created_at": "2025-09-21 01:15:53",
+		"updated_at": "2025-09-21 08:15:53"
+	}
+]

@@ -1,0 +1,42 @@
+[
+	{
+		"id": 1,
+		"category": "Beranda",
+		"sub_menu": "",
+		"linked": "Beranda",
+		"created_at": null,
+		"updated_at": null
+	},
+	{
+		"id": 2,
+		"category": "Info Data",
+		"sub_menu": "",
+		"linked": "Info-Data",
+		"created_at": null,
+		"updated_at": null
+	},
+	{
+		"id": 3,
+		"category": "Integrasi Portal",
+		"sub_menu": "",
+		"linked": "Integrasi-Portal",
+		"created_at": null,
+		"updated_at": null
+	},
+	{
+		"id": 4,
+		"category": "Satker / OPD",
+		"sub_menu": "",
+		"linked": "Satker",
+		"created_at": null,
+		"updated_at": null
+	},
+	{
+		"id": 5,
+		"category": "Sektor Dimensi",
+		"sub_menu": "",
+		"linked": "Dimensi",
+		"created_at": null,
+		"updated_at": null
+	}
+]

@@ -1,0 +1,90 @@
+[
+	{
+		"id": 1,
+		"category": "Beranda",
+		"sub_menu": "",
+		"linked": "/",
+		"created_at": null,
+		"updated_at": null
+	},
+	{
+		"id": 2,
+		"category": "Koleksi Dataset",
+		"sub_menu": "",
+		"linked": "/Dataset",
+		"created_at": null,
+		"updated_at": null
+	},
+	{
+		"id": 3,
+		"category": "Sektor",
+		"sub_menu": "Pendidikan",
+		"linked": "/Dataset/Sektor/Pendidikan",
+		"created_at": null,
+		"updated_at": null
+	},
+	{
+		"id": 4,
+		"category": "Sektor",
+		"sub_menu": "Kesehatan",
+		"linked": "/Dataset/Sektor/Kesehatan",
+		"created_at": null,
+		"updated_at": null
+	},
+	{
+		"id": 5,
+		"category": "Sektor",
+		"sub_menu": "Ekonomi",
+		"linked": "/Dataset/Sektor/Ekonomi",
+		"created_at": null,
+		"updated_at": null
+	},
+	{
+		"id": 6,
+		"category": "Sektor",
+		"sub_menu": "Lingkungan",
+		"linked": "/Dataset/Sektor/Lingkungan",
+		"created_at": null,
+		"updated_at": null
+	},
+	{
+		"id": 7,
+		"category": "Sektor",
+		"sub_menu": "Infrastruktur",
+		"linked": "/Dataset/Sektor/Infrastruktur",
+		"created_at": null,
+		"updated_at": null
+	},
+	{
+		"id": 8,
+		"category": "Sektor",
+		"sub_menu": "Kemiskinan",
+		"linked": "/Dataset/Sektor/Kemiskinan",
+		"created_at": null,
+		"updated_at": null
+	},
+	{
+		"id": 9,
+		"category": "Metadata",
+		"sub_menu": "",
+		"linked": "/Metadata",
+		"created_at": null,
+		"updated_at": null
+	},
+	{
+		"id": 10,
+		"category": "Info Grafik",
+		"sub_menu": "",
+		"linked": "/Infografik",
+		"created_at": null,
+		"updated_at": null
+	},
+	{
+		"id": 11,
+		"category": "Artikel",
+		"sub_menu": "",
+		"linked": "/Artikel",
+		"created_at": null,
+		"updated_at": null
+	}
+]

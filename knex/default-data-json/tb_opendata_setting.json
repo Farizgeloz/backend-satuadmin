@@ -1,0 +1,15 @@
+[
+	{
+		"id": 1,
+		"bg_header": "#0a367b",
+		"bg_body": "#64B5F6",
+		"bg_title": "#010865",
+		"bg_content": "#D84315",
+		"bg_content2": "#546E7A",
+		"bg_content3": "#546E7A",
+		"bg_input": "#E1F5FE",
+		"bg_footer": "#0a367b",
+		"color_title": "#0a367b",
+		"color_date": "#880E4F"
+	}
+]

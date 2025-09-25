@@ -1,0 +1,17 @@
+{
+    "apps": [
+        {
+            "name": "private-api",
+            "script": "./index.js",
+            "instances": "3",
+            "exec_mode": "cluster",
+            "instance_var": "INSTANCE_ID",
+            "env": {
+                "NODE_ENV": "development"
+            },
+            "env_production": {
+                "NODE_ENV": "production"
+            }
+        }
+    ]
+}

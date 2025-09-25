@@ -1,0 +1,30 @@
+[
+	{
+		"id": 4,
+		"id_dataset": 20,
+		"ip_address": "127.0.0.1",
+		"user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36",
+		"visited_at": "2025-08-27"
+	},
+	{
+		"id": 5,
+		"id_dataset": 21,
+		"ip_address": "127.0.0.1",
+		"user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36",
+		"visited_at": "2025-08-28"
+	},
+	{
+		"id": 7,
+		"id_dataset": 1,
+		"ip_address": "127.0.0.1",
+		"user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+		"visited_at": "2025-09-20"
+	},
+	{
+		"id": 8,
+		"id_dataset": 17,
+		"ip_address": "127.0.0.1",
+		"user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+		"visited_at": "2025-09-20"
+	}
+]
