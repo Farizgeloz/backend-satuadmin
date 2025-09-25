@@ -53,6 +53,7 @@ const server = new Hapi.server({
                     console.error('__failAction pada joi validation__');
                     console.error(err.data);
                 }
+
                 throw Boom.badRequest(err.message);
             }
         }
@@ -94,7 +95,8 @@ const Main = async () => {
         console.info(`\x1b[33m Environment:\x1b[92m ${process.env.NODE_ENV} \x1b[0m`);
         console.info(`\x1b[33m Server running at:\x1b[92m ${server.info.uri} \x1b[0m`);
         console.info(`\x1b[33m Total route path API:\x1b[92m ${server.table().length} \x1b[0m`);
-    } else {
+    }
+    else {
         // Di Vercel cukup initialize
         await server.initialize();
     }
@@ -107,7 +109,8 @@ process.on('unhandledRejection', (err) => {
         console.error('___unhandledRejection___');
         console.error(err);
         process.exit(1);
-    } else {
+    }
+    else {
         const message = err.message;
         const stackTrace = err?.stack?.replace(
             new RegExp(process.cwd().replace(/\\/g, '\\\\'), 'gim'),
