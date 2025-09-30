@@ -6,7 +6,7 @@ module.exports = {
         client: 'mysql',
         connection: {
             host: '127.0.0.1',
-            database: 'api_mata_satu_admin2',
+            database: 'api_mata_satuadmin',
             user: 'root',
             password: '',
             charset: 'utf8',
@@ -18,16 +18,16 @@ module.exports = {
         },
         pool: {
             min: 2,
-            max: 20,
-            idleTimeoutMillis: 60000,
-            acquireTimeoutMillis: 60000,
+            max: 400,
             afterCreate: function (connection, callback) {
+
                 connection.query('SET time_zone = "+00:00";', (err) => {
+
                     callback(err, connection);
                 });
             }
         },
-        acquireConnectionTimeout: 30000,
+        acquireConnectionTimeout: 90000,
         asyncStackTraces: true,
         migrations: {
             directory: './knex/migrations',
@@ -41,7 +41,7 @@ module.exports = {
     production: {
         client: 'mysql',
         connection: {
-            database: 'api_mata_satu_admin2',
+            database: 'api_mata_satuadmin',
             user: 'root',
             password: '',
             charset: 'utf8',

@@ -63,8 +63,8 @@ exports.up = function (knex) {
                     table.string('images_b',255).nullable();
                     table.text('content_c', 'longtext').nullable(); // di MySQL bisa atur jenis: tinytext, text, mediumtext, longtext
                     table.string('images_c',255).nullable();
-                    table.string('download_file', 100).nullable(); // di MySQL bisa atur jenis: tinytext, text, mediumtext, longtext
-                    table.string('sumber',100).nullable();
+                    table.string('download_file', 255).nullable(); // di MySQL bisa atur jenis: tinytext, text, mediumtext, longtext
+                    table.string('sumber',255).nullable();
                     table.string('admin',50).nullable();
                     table.string('visibilitas',10).nullable();
                     table.timestamp('created_at').notNullable().defaultTo(knex.fn.now());
@@ -226,8 +226,8 @@ exports.up = function (knex) {
                     table.string('images_b',255).nullable();
                     table.text('content_c', 'longtext').nullable(); // di MySQL bisa atur jenis: tinytext, text, mediumtext, longtext
                     table.string('images_c',255).nullable();
-                    table.string('download_file', 100).nullable(); // di MySQL bisa atur jenis: tinytext, text, mediumtext, longtext
-                    table.string('sumber',100).nullable();
+                    table.string('download_file', 255).nullable(); // di MySQL bisa atur jenis: tinytext, text, mediumtext, longtext
+                    table.string('sumber',255).nullable();
                     table.string('admin',50).nullable();
                     table.string('visibilitas',10).nullable();
                     table.timestamp('created_at').notNullable().defaultTo(knex.fn.now());

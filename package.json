@@ -11,8 +11,7 @@
     "dev": "cross-env INSTANCE_ID=0 NODE_ENV=development nodemon index.js --ignore './knex'",
     "prod": "cross-env INSTANCE_ID=0 NODE_ENV=production nodemon index.js --ignore './knex'",
     "lint": "eslint ./src",
-    "lintfix": "eslint . --fix",
-    "deploy": "vercel --prod --yes"
+    "lintfix": "eslint . --fix"
   },
   "repository": {
     "type": "git",

@@ -23,8 +23,7 @@ module.exports = {
             nick: Joi.string().required(),
             role: Joi.string().required(),
             name: Joi.string().allow('', null),
-            opd_id: Joi.string().allow('', null),
-            jabatan: Joi.string().allow('', null)
+            opd_id: Joi.string().allow('', null)
         })
     },
 
@@ -36,8 +35,7 @@ module.exports = {
             email: Joi.string().required(),
             role: Joi.string().required(),
             name: Joi.string().allow('', null),
-            opd_id: Joi.string().allow('', null),
-            jabatan: Joi.string().allow('', null)
+            opd_id: Joi.string().allow('', null)
         })
 
 

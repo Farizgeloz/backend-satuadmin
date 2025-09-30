@@ -14,61 +14,6 @@ exports.plugin = {
 
         server.route({
             method: 'GET',
-            path: '/api/opendata/count',
-            handler: OpenItemHandler.view_count,
-            options: {
-                //validate: OpenItemValidation.query
-            }
-        });
-
-        server.route({
-            method: 'GET',
-            path: '/api/opendata/dataset_graph_satker',
-            handler: OpenItemHandler.view_graph_satker,
-            options: {
-                //validate: OpenItemValidation.query
-            }
-        });
-
-        server.route({
-            method: 'GET',
-            path: '/api/opendata/dataset_graph_info',
-            handler: OpenItemHandler.view_graph_info,
-            options: {
-                //validate: OpenItemValidation.query
-            }
-        });
-
-        /* server.route({
-            method: 'GET',
-            path: '/api/opendata/dataset_info',
-            handler: OpenItemHandler.view_info,
-            options: {
-                //validate: OpenItemValidation.query
-            }
-        }); */
-
-        server.route({
-            method: 'GET',
-            path: '/api/opendata/dataset_item',
-            handler: OpenItemHandler.view_item,
-            options: {
-                validate: OpenItemValidation.query
-            }
-        });
-
-        server.route({
-            method: 'GET',
-            path: '/api/opendata/dataset_data_top',
-            handler: OpenItemHandler.view_dataset_top,
-            options: {
-                validate: OpenItemValidation.query
-            }
-        });
-
-
-        server.route({
-            method: 'GET',
             path: '/api/opendata/dataset_detail_visitor_count/{id}',
             handler: OpenItemHandler.view_id
         });
@@ -188,7 +133,7 @@ exports.plugin = {
 
         server.route({
             method: 'DELETE',
-            path: '/opendata/artikel/delete/{id}',
+            path: '/api/opendata/artikel/delete/{id}',
             handler: OpenItemHandler.delete_artikel
         });
 

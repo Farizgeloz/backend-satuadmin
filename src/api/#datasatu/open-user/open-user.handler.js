@@ -18,14 +18,35 @@ const internals_users = {
 module.exports = {
 
     view_user: async function (request, h) {
+        const queryUrl = { ...request.query };
+        const search_opd = queryUrl.search_opd;
+        const search_jabatan = queryUrl.search_jabatan;
+        const search_role = queryUrl.search_role;
+
+        console.log('search_opd : ' + search_opd);
+
         try {
             const sql = internals_users.sqlBaseView.clone();
-            sql.leftJoin('tb_opd', 'tb_users.opd_id', '=', 'tb_opd.id_opd');
-            sql.select(
-                'tb_users.*',
-                'tb_opd.nama_opd'
-            );
-            sql.orderBy('tb_users.id', 'asc');
+            if (search_opd !== null && search_role !== 'Super Admin') {
+                sql.leftJoin('tb_opd', 'tb_users.opd_id', '=', 'tb_opd.id_opd');
+                sql.select(
+                    'tb_users.*',
+                    'tb_opd.nama_opd'
+                );
+                sql.orderBy('tb_users.id', 'asc');
+                const opdArray = Array.isArray(search_opd)
+                    ? search_opd
+                    : search_opd.split(',').map((id) => Number(id.trim()));  // konversi ke number, atau parseInt
+                sql.whereIn('tb_users.opd_id', opdArray);
+            }
+            else {
+                sql.leftJoin('tb_opd', 'tb_users.opd_id', '=', 'tb_opd.id_opd');
+                sql.select(
+                    'tb_users.*',
+                    'tb_opd.nama_opd'
+                );
+                sql.orderBy('tb_users.id', 'asc');
+            }
 
             const data = await sql;
 
@@ -52,10 +73,10 @@ module.exports = {
 
             // Ambil data berdasarkan kategori yang mengandung `id`
             const sql = internals_users.sqlBaseView.clone();
-            sql.leftJoin('opd', 'tb_users.opd_id', '=', 'opd.id_opd');
+            sql.leftJoin('tb_opd', 'tb_users.opd_id', '=', 'tb_opd.id_opd');
             sql.select(
                 'tb_users.*',
-                'opd.nama_opd'
+                'tb_opd.nama_opd'
             );
             const data = await sql.where('uuid', 'like', `%${id}%`).first();
 
@@ -76,7 +97,7 @@ module.exports = {
 
 
         const {
-            nick, name,email,password,confpassword,role,opd_id,jabatan
+            nick, name,email,password,confpassword,role,opd_id
         } = request.payload;
 
 
@@ -100,7 +121,6 @@ module.exports = {
 
             if (role !== 'Super Admin') {
                 updateData.opd_id = opd_id;
-                updateData.jabatan = jabatan;
             }
 
             // Simpan password jika ada dan bukan null/empty string
@@ -126,7 +146,7 @@ module.exports = {
     },
 
     add_user: async function (request, h) {
-        const { nick, name, email, password, confpassword, role, opd_id, jabatan } = request.payload;
+        const { nick, name, email, password, confpassword, role, opd_id } = request.payload;
 
         try {
         // validasi password & confirm password
@@ -154,7 +174,6 @@ module.exports = {
 
             if (role !== 'Super Admin') {
                 insertData.opd_id = opd_id;
-                insertData.jabatan = jabatan;
             }
 
             await Knex('tb_users').insert(insertData);
@@ -176,7 +195,7 @@ module.exports = {
             if (!data) {
                 return h.response({ msg: 'Data tidak ditemukan' }).code(404);
             }
-           
+
             // Hapus dari database
             await Knex('tb_users').where({ id }).del();
 
@@ -227,6 +246,7 @@ module.exports = {
                     id: user.id,
                     email: user.email,
                     nick: user.nick,
+                    name: user.name,
                     opd_id: user.opd_id
                 }
             }).code(200);

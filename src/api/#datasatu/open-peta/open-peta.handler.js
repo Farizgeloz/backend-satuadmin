@@ -3,7 +3,7 @@
 'use strict';
 
 const Knex = require('../../../database');
-const { generatePresignedUrl,uploadFile,deleteFile } = require('../../../utils/s3Client'); // path ke helper baru
+const { generatePresignedUrl,uploadFile,uploadFileTumb,deleteFile } = require('../../../utils/s3Client'); // path ke helper baru
 const path = require('path');
 const moment = require('moment');
 const fs = require('fs');
@@ -218,15 +218,35 @@ module.exports = {
 
             const resultWithUrls = await Promise.all(
                 datas.map(async (item) => {
+
                     const plainItem = item.toJSON ? item.toJSON() : { ...item };
-                    if (plainItem.images) {
-                        try {
-                            plainItem.presignedUrl = await generatePresignedUrl(plainItem.images, 60 * 5);
+
+                    if (item.koleksi_data === 'Peta Interaktif') {
+
+                        if (plainItem.images) {
+                            try {
+                                plainItem.presignedUrl = await generatePresignedUrl(`tumb/` + plainItem.images, 60 * 5);
+
+                            }
+                            catch (err) {
+                                console.warn(`⚠️ Gagal buat presigned URL untuk ${plainItem.images}:`, err.message);
+                                plainItem.presignedUrl = null;
+                            }
                         }
-                        catch (err) {
-                            console.warn(`⚠️ Gagal buat presigned URL untuk ${plainItem.images}:`, err.message);
-                            plainItem.presignedUrl = null;
+                    }
+                    else {
+
+                        if (plainItem.images) {
+                            try {
+                                plainItem.presignedUrl = await generatePresignedUrl( plainItem.images, 60 * 5);
+
+                            }
+                            catch (err) {
+                                console.warn(`⚠️ Gagal buat presigned URL untuk ${plainItem.images}:`, err.message);
+                                plainItem.presignedUrl = null;
+                            }
                         }
+
                     }
 
                     return plainItem;
@@ -690,10 +710,12 @@ module.exports = {
                     if (item.images) {
                         try {
                             plainItem.presignedUrl = await generatePresignedUrl(item.images, 60 * 5);
+                            plainItem.presignedUrl_tumb = await generatePresignedUrl(`tumb/` + item.images, 60 * 5);
                         }
                         catch (err) {
                             console.warn('⚠️ Gagal buat presigned URL:', err.message);
                             plainItem.presignedUrl = null;
+                            plainItem.presignedUrl_tumb = null;
                         }
                     }
 
@@ -1002,6 +1024,11 @@ module.exports = {
     view_location_maplist_id: async function (request, h) {
         try {
             const { id } = request.params;
+            const titleAsText = decodeURIComponent(id).replace(/-/g, ' ');
+
+            console.log('titleAsText' + titleAsText);
+
+
             const sql = internals_tb_satupeta_location_maplist.sqlBaseView.clone();
 
             sql.leftJoin('tb_opd', 'tb_satupeta_location_maplist.satker_id', '=', 'tb_opd.id_opd');
@@ -1015,7 +1042,9 @@ module.exports = {
                 'tb_sektor.color_code as sektor_color',
                 'tb_satupeta_locations.nama_location'
             );
-            const data = await sql.where('id_maplist', id).first();
+            const data = await sql
+                .whereRaw('LOWER(title) LIKE ?', [`%${titleAsText.toLowerCase()}%`])
+                .first();
 
             if (!data) {
                 return h.response({ message: 'Data not found' }).code(404);
@@ -1025,7 +1054,7 @@ module.exports = {
 
             if (plainItem.images) {
                 try {
-                    plainItem.presignedUrl = await generatePresignedUrl(plainItem.images, 60 * 5);
+                    plainItem.presignedUrl = await generatePresignedUrl(`tumb/` + plainItem.images, 60 * 5);
                 }
                 catch (err) {
                     console.warn(`⚠️ Gagal membuat presigned URL:`, err.message);
@@ -1037,7 +1066,9 @@ module.exports = {
             }
 
             const sql2 = internals_tb_satupeta_location_maplist.sqlBaseView.clone();
-            const data2 = await sql2.where('id_maplist', id).first();
+            const data2 = await sql2
+                .whereRaw('LOWER(title) LIKE ?', [`%${titleAsText.toLowerCase()}%`])
+                .first();
 
             const resultlocationpointQuery = internals_tb_satupeta_location_points.sqlBaseView.clone();
             resultlocationpointQuery.clearSelect();
@@ -1095,6 +1126,7 @@ module.exports = {
 
         const file = request.payload.file;
         let filename = null;
+        let filename_tumb = null;
         const tanggal = moment().format('YYYY-MM-DD');
 
         try {
@@ -1108,6 +1140,7 @@ module.exports = {
                 if (oldData.images) {
                     try {
                         await deleteFile(oldData.images);
+                        await deleteFile(`tumb` + oldData.images);
                     }
                     catch (err) {
                         console.warn('⚠️ Gagal hapus file lama:', err.message);
@@ -1117,6 +1150,7 @@ module.exports = {
                 const ext1 = path.extname(file.hapi.filename);
                 const safeTitle = sanitizeFileName(title);
                 filename = `satupeta/images/${tanggal}_${safeTitle}${ext1}`;
+                filename_tumb = `tumb/satupeta/images/${tanggal}_${safeTitle}${ext1}`;
 
                 // ambil buffer
                 const fileData = file._data;
@@ -1125,6 +1159,7 @@ module.exports = {
                 }
 
                 await uploadFile(fileData, filename, file.hapi.headers['content-type']);
+                await uploadFileTumb(fileData, filename_tumb, file.hapi.headers['content-type']);
             }
 
             const updateData = {
@@ -1213,9 +1248,11 @@ module.exports = {
                         const ext1 = path.extname(file.hapi.filename);
                         const safeTitle = sanitizeFileName(loc.title);
                         const filename = `satupeta/images/${tanggal}_${safeTitle}${ext1}`;
+                        const filename_tumb = `tumb/satupeta/images/${tanggal}_${safeTitle}${ext1}`;
                         addData.images = filename;
 
                         await uploadFile(buffer, filename,file.hapi.headers['content-type']);
+                        await uploadFileTumb(buffer, filename_tumb,file.hapi.headers['content-type']);
                     }
                     else if (file && file.readable) {
                     // ✅ fallback kalau yang masuk Readable stream
@@ -1224,8 +1261,10 @@ module.exports = {
                         const ext1 = path.extname(file.hapi.filename);
                         const safeTitle = sanitizeFileName(loc.title);
                         const filename = `satupeta/images/${tanggal}_${safeTitle}${ext1}`;
+                        const filename_tumb = `tumb/satupeta/images/${tanggal}_${safeTitle}${ext1}`;
                         addData.images = filename;
                         await uploadFile(buffer, filename,file.hapi.headers['content-type']);
+                        await uploadFileTumb(buffer, filename_tumb,file.hapi.headers['content-type']);
                     }
 
                     await Knex('tb_satupeta_location_maplist').insert(addData);
@@ -1377,6 +1416,7 @@ module.exports = {
             if (oldData.images) {
                 try {
                     await deleteFile(oldData.images);
+                    await deleteFile(`tumb/` + oldData.images);
                 }
                 catch (err) {
                     console.warn('⚠️ Gagal menghapus file lama dari storage:', err.message);
@@ -2081,6 +2121,7 @@ module.exports = {
             if (oldData.images) {
                 try {
                     await deleteFile(oldData.images);
+                    await deleteFile(`tumb/` + oldData.images);
                 }
                 catch (err) {
                     console.warn('⚠️ Gagal menghapus file lama:', err.message);
@@ -2131,6 +2172,15 @@ module.exports = {
                     plainItem.presignedUrl_c = item.images_c
                         ? await generatePresignedUrl(item.images_c)
                         : null;
+                    plainItem.presignedUrl_tumb_a = item.images_a
+                        ? await generatePresignedUrl(`tumb/` + item.images_a)
+                        : null;
+                    plainItem.presignedUrl_tumb_b = item.images_b
+                        ? await generatePresignedUrl(`tumb/` + item.images_b)
+                        : null;
+                    plainItem.presignedUrl_tumb_c = item.images_c
+                        ? await generatePresignedUrl(`tumb/` + item.images_c)
+                        : null;
                     plainItem.presignedUrl_download_file = item.download_file
                         ? await generatePresignedUrl(item.download_file)
                         : null;
@@ -2140,6 +2190,9 @@ module.exports = {
                     plainItem.presignedUrl_a = null;
                     plainItem.presignedUrl_b = null;
                     plainItem.presignedUrl_c = null;
+                    plainItem.presignedUrl_tumb_a = null;
+                    plainItem.presignedUrl_tumb_b = null;
+                    plainItem.presignedUrl_tumb_c = null;
                     plainItem.presignedUrl_download_file = null;
                 }
 
@@ -2202,10 +2255,12 @@ module.exports = {
                 if (data[key]) {
                     try {
                         plainItem[urlKey] = await generatePresignedUrl(data[key]);
+                        plainItem[urlKey + `_tumb`] = await generatePresignedUrl(`tumb/` + data[key]);
                     }
                     catch (err) {
                         console.warn(`⚠️ Gagal generate URL untuk ${key}:`, err.message);
                         plainItem[urlKey] = null;
+                        plainItem[urlKey + `_tumb`] = null;
                     }
                 }
             }
@@ -2253,10 +2308,12 @@ module.exports = {
                 if (data[key]) {
                     try {
                         plainItem[urlKey] = await generatePresignedUrl(data[key]);
+                        plainItem[urlKey + `_tumb`] = await generatePresignedUrl(`tumb/` + data[key]);
                     }
                     catch (err) {
                         console.warn(`⚠️ Gagal generate URL untuk ${key}:`, err.message);
                         plainItem[urlKey] = null;
+                        plainItem[urlKey + `_tumb`] = null;
                     }
                 }
             }
@@ -2272,47 +2329,8 @@ module.exports = {
     // ============================
     // ADD BERITA
     // ============================
-    add_satupeta_artikel: async function (request, h) {
-        const { title, content, satker_id, visibilitas } = request.payload;
-        const file = request.payload.file;
-        const tanggal = moment().format('YYYY-MM-DD');
-        let filename = null;
-
-        try {
-            if (file && file.hapi && file.hapi.filename) {
-                const ext = path.extname(file.hapi.filename);
-                filename = `satupeta/images/berita/${tanggal}_${title}${ext}`;
-                await uploadFile(filename, file, file.hapi.headers['content-type']);
-            }
-
-            const addData = {
-                title,
-                content,
-                satker_id,
-                visibilitas,
-                created_at: moment().format('YYYY-MM-DD HH:mm:ss'),
-                updated_at: moment().format('YYYY-MM-DD HH:mm:ss')
-            };
-
-            if (filename) {
-                addData.images = filename;
-            }
-
-            await Knex('tb_satupeta_artikel').insert(addData);
-            return h.response({ message: 'Berita berhasil ditambahkan' }).code(201);
-        }
-        catch (err) {
-            console.error('❌ Error saat tambah artikel:', err);
-            return h.response({ msg: 'Gagal menyimpan artikel' }).code(500);
-        }
-    },
-
-    // ============================
-    // UPDATE BERITA
-    // ============================
-    update_satupeta_artikel: async function (request, h) {
-        const id_artikel = request.params.id;
-        const { title, content_a,content_b,content_c, satker_id, visibilitas } = request.payload;
+    add_artikel: async function (request, h) {
+        const { title, content_a,content_b,content_c,sumber,  visibilitas,admin } = request.payload;
         const file_a = request.payload.file_a;
         const file_b = request.payload.file_b;
         const file_c = request.payload.file_c;
@@ -2321,30 +2339,19 @@ module.exports = {
         let filename_a = null;
         let filename_b = null;
         let filename_c = null;
+        let filename_a_tumb = null;
+        let filename_b_tumb = null;
+        let filename_c_tumb = null;
         let filename_download = null;
 
         try {
-            const oldData = await Knex('tb_satupeta_artikel').where({ id_artikel }).first();
-            if (!oldData) {
-                return h.response({ msg: 'Data tidak ditemukan' }).code(404);
-            }
-
-            //console.log('id_artikel', id_artikel);
 
 
             if (file_a && file_a.hapi && file_a.hapi.filename) {
-                if (oldData.images_a) {
-                    try {
-                        await deleteFile(oldData.images_a);
-                    }
-                    catch (err) {
-                        console.warn('⚠️ Gagal hapus file lama artikel:', err.message);
-                    }
-                }
-
                 const ext1 = path.extname(file_a.hapi.filename);
                 const safeTitle = sanitizeFileName(title);
-                filename_a = `satupeta/images/berita/${tanggal}_${safeTitle}_a${ext1}`;
+                filename_a = `satupeta/artikel/${tanggal}_${safeTitle}_a${ext1}`;
+                filename_a_tumb = `tumb/satupeta/artikel/${tanggal}_${safeTitle}_a${ext1}`;
 
                 // ambil buffer
                 const fileData = file_a._data;
@@ -2353,21 +2360,14 @@ module.exports = {
                 }
 
                 await uploadFile(fileData, filename_a, file_a.hapi.headers['content-type']);
+                await uploadFileTumb(fileData, filename_a_tumb, file_a.hapi.headers['content-type']);
             }
 
             if (file_b && file_b.hapi && file_b.hapi.filename) {
-                if (oldData.images_b) {
-                    try {
-                        await deleteFile(oldData.images_b);
-                    }
-                    catch (err) {
-                        console.warn('⚠️ Gagal hapus file lama artikel:', err.message);
-                    }
-                }
-
                 const ext1 = path.extname(file_b.hapi.filename);
                 const safeTitle = sanitizeFileName(title);
-                filename_b = `satupeta/images/berita/${tanggal}_${safeTitle}_b${ext1}`;
+                filename_b = `satupeta/artikel/${tanggal}_${safeTitle}_b${ext1}`;
+                filename_b_tumb = `tumb/satupeta/artikel/${tanggal}_${safeTitle}_b${ext1}`;
 
                 // ambil buffer
                 const fileData = file_b._data;
@@ -2376,21 +2376,14 @@ module.exports = {
                 }
 
                 await uploadFile(fileData, filename_b, file_b.hapi.headers['content-type']);
+                await uploadFileTumb(fileData, filename_b_tumb, file_b.hapi.headers['content-type']);
             }
 
             if (file_c && file_c.hapi && file_c.hapi.filename) {
-                if (oldData.images_c) {
-                    try {
-                        await deleteFile(oldData.images_c);
-                    }
-                    catch (err) {
-                        console.warn('⚠️ Gagal hapus file lama artikel:', err.message);
-                    }
-                }
-
                 const ext1 = path.extname(file_c.hapi.filename);
                 const safeTitle = sanitizeFileName(title);
-                filename_c = `satupeta/images/berita/${tanggal}_${safeTitle}_c${ext1}`;
+                filename_c = `satupeta/artikel/${tanggal}_${safeTitle}_c${ext1}`;
+                filename_c_tumb = `tumb/satupeta/artikel/${tanggal}_${safeTitle}_c${ext1}`;
 
                 // ambil buffer
                 const fileData = file_c._data;
@@ -2399,21 +2392,13 @@ module.exports = {
                 }
 
                 await uploadFile(fileData, filename_c, file_c.hapi.headers['content-type']);
+                await uploadFileTumb(fileData, filename_c_tumb, file_c.hapi.headers['content-type']);
             }
 
             if (download_file && download_file.hapi && download_file.hapi.filename) {
-                if (oldData.download_file) {
-                    try {
-                        await deleteFile(oldData.download_file);
-                    }
-                    catch (err) {
-                        console.warn('⚠️ Gagal hapus file lama artikel:', err.message);
-                    }
-                }
-
                 const ext1 = path.extname(download_file.hapi.filename);
                 const safeTitle = sanitizeFileName(title);
-                filename_download = `satupeta/download_file/berita/${tanggal}_${safeTitle}${ext1}`;
+                filename_download = `satupeta/download_file/artikel/${tanggal}_${safeTitle}${ext1}`;
 
                 // ambil buffer
                 const fileData = download_file._data;
@@ -2429,7 +2414,174 @@ module.exports = {
                 content_a,
                 content_b,
                 content_c,
-                satker_id,
+                admin,
+                sumber,
+                visibilitas,
+                updated_at: moment().format('YYYY-MM-DD HH:mm:ss')
+            };
+
+
+
+            if (filename_a) {
+                updateData.images_a = filename_a;
+            }
+
+            if (filename_b) {
+                updateData.images_b = filename_b;
+            }
+
+            if (filename_c) {
+                updateData.images_c = filename_c;
+            }
+
+            if (filename_download) {
+                updateData.download_file = filename_download;
+            }
+
+            await Knex('tb_satupeta_artikel').insert(updateData);
+            return h.response({ message: 'Berita berhasil ditambahkan' }).code(201);
+        }
+        catch (err) {
+            console.error('❌ Error saat tambah artikel:', err);
+            return h.response({ msg: 'Gagal menyimpan artikel' }).code(500);
+        }
+    },
+
+    // ============================
+    // UPDATE BERITA
+    // ============================
+    update_artikel: async function (request, h) {
+        const id_artikel = request.params.id;
+        const { title, content_a,content_b,content_c, sumber, visibilitas } = request.payload;
+        const file_a = request.payload.file_a;
+        const file_b = request.payload.file_b;
+        const file_c = request.payload.file_c;
+        const download_file = request.payload.download_file;
+        const tanggal = moment().format('YYYY-MM-DD');
+        let filename_a = null;
+        let filename_b = null;
+        let filename_c = null;
+        let filename_a_tumb = null;
+        let filename_b_tumb = null;
+        let filename_c_tumb = null;
+        let filename_download = null;
+
+        try {
+            const oldData = await Knex('tb_satupeta_artikel').where({ id_artikel }).first();
+            if (!oldData) {
+                return h.response({ msg: 'Data tidak ditemukan' }).code(404);
+            }
+
+            //console.log('id_artikel', id_artikel);
+
+
+            if (file_a && file_a.hapi && file_a.hapi.filename) {
+                if (oldData.images_a) {
+                    try {
+                        await deleteFile(oldData.images_a);
+                        await deleteFile(`tumb/` + oldData.images_a);
+                    }
+                    catch (err) {
+                        console.warn('⚠️ Gagal hapus file lama artikel:', err.message);
+                    }
+                }
+
+                const ext1 = path.extname(file_a.hapi.filename);
+                const safeTitle = sanitizeFileName(title);
+                filename_a = `satupeta/artikel/${tanggal}_${safeTitle}_a${ext1}`;
+                filename_a_tumb = `tumb/satupeta/artikel/${tanggal}_${safeTitle}_a${ext1}`;
+
+                // ambil buffer
+                const fileData = file_a._data;
+                if (!fileData) {
+                    throw new Error('❌ File data kosong');
+                }
+
+                await uploadFile(fileData, filename_a, file_a.hapi.headers['content-type']);
+                await uploadFileTumb(fileData, filename_a_tumb, file_a.hapi.headers['content-type']);
+            }
+
+            if (file_b && file_b.hapi && file_b.hapi.filename) {
+                if (oldData.images_b) {
+                    try {
+                        await deleteFile(oldData.images_b);
+                        await deleteFile(`tumb/` + oldData.images_b);
+                    }
+                    catch (err) {
+                        console.warn('⚠️ Gagal hapus file lama artikel:', err.message);
+                    }
+                }
+
+                const ext1 = path.extname(file_b.hapi.filename);
+                const safeTitle = sanitizeFileName(title);
+                filename_b = `satupeta/artikel/${tanggal}_${safeTitle}_b${ext1}`;
+                filename_b_tumb = `tumb/satupeta/artikel/${tanggal}_${safeTitle}_b${ext1}`;
+
+                // ambil buffer
+                const fileData = file_b._data;
+                if (!fileData) {
+                    throw new Error('❌ File data kosong');
+                }
+
+                await uploadFile(fileData, filename_b, file_b.hapi.headers['content-type']);
+                await uploadFileTumb(fileData, filename_b_tumb, file_b.hapi.headers['content-type']);
+            }
+
+            if (file_c && file_c.hapi && file_c.hapi.filename) {
+                if (oldData.images_c) {
+                    try {
+                        await deleteFile(oldData.images_c);
+                        await deleteFile(`tumb/` + oldData.images_c);
+                    }
+                    catch (err) {
+                        console.warn('⚠️ Gagal hapus file lama artikel:', err.message);
+                    }
+                }
+
+                const ext1 = path.extname(file_c.hapi.filename);
+                const safeTitle = sanitizeFileName(title);
+                filename_c = `satupeta/artikel/${tanggal}_${safeTitle}_c${ext1}`;
+                filename_c_tumb = `tumb/satupeta/artikel/${tanggal}_${safeTitle}_c${ext1}`;
+
+                // ambil buffer
+                const fileData = file_c._data;
+                if (!fileData) {
+                    throw new Error('❌ File data kosong');
+                }
+
+                await uploadFile(fileData, filename_c, file_c.hapi.headers['content-type']);
+                await uploadFileTumb(fileData, filename_c_tumb, file_c.hapi.headers['content-type']);
+            }
+
+            if (download_file && download_file.hapi && download_file.hapi.filename) {
+                if (oldData.download_file) {
+                    try {
+                        await deleteFile(oldData.download_file);
+                    }
+                    catch (err) {
+                        console.warn('⚠️ Gagal hapus file lama artikel:', err.message);
+                    }
+                }
+
+                const ext1 = path.extname(download_file.hapi.filename);
+                const safeTitle = sanitizeFileName(title);
+                filename_download = `satupeta/download_file/artikel/${tanggal}_${safeTitle}${ext1}`;
+
+                // ambil buffer
+                const fileData = download_file._data;
+                if (!fileData) {
+                    throw new Error('❌ File data kosong');
+                }
+
+                await uploadFile(fileData, filename_download, download_file.hapi.headers['content-type']);
+            }
+
+            const updateData = {
+                title,
+                content_a,
+                content_b,
+                content_c,
+                sumber,
                 visibilitas,
                 updated_at: moment().format('YYYY-MM-DD HH:mm:ss')
             };
@@ -2464,7 +2616,7 @@ module.exports = {
     // ============================
     // DELETE BERITA
     // ============================
-    delete_satupeta_artikel: async function (request, h) {
+    delete_artikel: async function (request, h) {
         const id_artikel = request.params.id;
 
         try {
@@ -2473,12 +2625,42 @@ module.exports = {
                 return h.response({ msg: 'Data tidak ditemukan' }).code(404);
             }
 
-            if (oldData.images) {
+            if (oldData.images_a) {
                 try {
-                    await deleteFile(oldData.images);
+                    await deleteFile(oldData.images_a);
+                    await deleteFile(`tumb/` + oldData.images_a);
                 }
                 catch (err) {
-                    console.warn('⚠️ Gagal hapus file artikel:', err.message);
+                    console.warn('⚠️ Gagal hapus file artikel image a:', err.message);
+                }
+            }
+
+            if (oldData.images_b) {
+                try {
+                    await deleteFile(oldData.images_b);
+                    await deleteFile(`tumb/` + oldData.images_b);
+                }
+                catch (err) {
+                    console.warn('⚠️ Gagal hapus file artikel image b:', err.message);
+                }
+            }
+
+            if (oldData.images_c) {
+                try {
+                    await deleteFile(oldData.images_c);
+                    await deleteFile(`tumb/` + oldData.images_c);
+                }
+                catch (err) {
+                    console.warn('⚠️ Gagal hapus file artikel image c:', err.message);
+                }
+            }
+
+            if (oldData.download_file) {
+                try {
+                    await deleteFile(oldData.download_file);
+                }
+                catch (err) {
+                    console.warn('⚠️ Gagal hapus file artikel download:', err.message);
                 }
             }
 

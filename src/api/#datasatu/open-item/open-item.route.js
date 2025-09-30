@@ -12,6 +12,15 @@ exports.plugin = {
 
         server.route({
             method: 'GET',
+            path: '/api/open-item/view_count',
+            handler: OpenItemHandler.view_count,
+            options: {
+                //validate: OpenItemValidation.query
+            }
+        });
+
+        server.route({
+            method: 'GET',
             path: '/api/open-item/site_ekosistem_setting',
             handler: OpenItemHandler.view_ekosistem_setting,
             options: {
@@ -787,6 +796,15 @@ exports.plugin = {
             handler: OpenItemHandler.view_satkercode_search,
             options: {
                 validate: OpenItemValidation.query
+            }
+        });
+
+        server.route({
+            method: 'GET',
+            path: '/api/open-item/satker',
+            handler: OpenItemHandler.view_satker,
+            options: {
+                //validate: OpenItemValidation.query
             }
         });
 

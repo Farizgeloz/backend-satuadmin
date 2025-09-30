@@ -508,7 +508,7 @@ exports.plugin = {
         server.route({
             method: 'PATCH',
             path: '/api/satupeta/map_artikel/update/{id}',
-            handler: OpenItemHandler.update_satupeta_artikel,
+            handler: OpenItemHandler.update_artikel,
             options: {
                 validate: {
                     payload: OpenItemValidation.edit.payload_artikel,
@@ -530,7 +530,7 @@ exports.plugin = {
         server.route({
             method: 'POST',
             path: '/api/satupeta/map_artikel/add',
-            handler: OpenItemHandler.add_satupeta_artikel,
+            handler: OpenItemHandler.add_artikel,
             options: {
                 validate: {
                     payload: OpenItemValidation.add.payload_artikel,
@@ -551,8 +551,8 @@ exports.plugin = {
 
         server.route({
             method: 'DELETE',
-            path: '/satupeta/map_artikel/delete/{id}',
-            handler: OpenItemHandler.delete_satupeta_artikel
+            path: '/api/satupeta/map_artikel/delete/{id}',
+            handler: OpenItemHandler.delete_artikel
         });
 
     }

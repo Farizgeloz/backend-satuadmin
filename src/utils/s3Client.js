@@ -76,15 +76,15 @@ const uploadFile = async (buffer, key, mimetype, bucket = BUCKET) => {
     if (mimetype.startsWith('image/')) {
         if (mimetype === 'image/jpeg' || mimetype === 'image/jpg') {
             finalBuffer = await sharp(buffer)
-                .resize({ width: 1200, fit: 'inside', withoutEnlargement: true }) // max width 1200px
-                .jpeg({ quality: 60 }) // lebih kecil
+                .resize({ width: 800, fit: 'inside', withoutEnlargement: true }) // max width 1200px
+                .jpeg({ quality: 50 }) // lebih kecil
                 .toBuffer();
             finalMime = 'image/jpeg';
         }
         else if (mimetype === 'image/png') {
         // 👉 kalau mau tetap PNG (dengan transparansi)
             finalBuffer = await sharp(buffer)
-                .resize({ width: 1200, fit: 'inside', withoutEnlargement: true })
+                .resize({ width: 800, fit: 'inside', withoutEnlargement: true })
                 .png({ compressionLevel: 9, palette: true }) // pakai palette biar kecil
                 .toBuffer();
             finalMime = 'image/png';
@@ -98,22 +98,22 @@ const uploadFile = async (buffer, key, mimetype, bucket = BUCKET) => {
         }
         else if (mimetype === 'image/webp') {
             finalBuffer = await sharp(buffer)
-                .resize({ width: 1200, fit: 'inside', withoutEnlargement: true })
-                .webp({ quality: 70 })
+                .resize({ width: 800, fit: 'inside', withoutEnlargement: true })
+                .webp({ quality: 50 })
                 .toBuffer();
             finalMime = 'image/webp';
         }
         else if (mimetype === 'image/avif') {
             finalBuffer = await sharp(buffer)
-                .resize({ width: 1200, fit: 'inside', withoutEnlargement: true })
+                .resize({ width: 800, fit: 'inside', withoutEnlargement: true })
                 .avif({ quality: 45 }) // turunkan quality
                 .toBuffer();
             finalMime = 'image/avif';
         }
         else {
             finalBuffer = await sharp(buffer)
-                .resize({ width: 1200, fit: 'inside', withoutEnlargement: true })
-                .jpeg({ quality: 60 })
+                .resize({ width: 800, fit: 'inside', withoutEnlargement: true })
+                .jpeg({ quality: 50 })
                 .toBuffer();
             finalMime = 'image/jpeg';
         }

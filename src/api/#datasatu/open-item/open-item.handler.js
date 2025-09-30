@@ -85,6 +85,120 @@ const sanitizeFileName = (name) => {
 
 module.exports = {
 
+    view_count: async function (request, h) {
+        try {
+            const count_satuportal_iklan_raw = await Knex('tb_satuportal_iklan')
+                .count('id as count_data')
+                .first();
+            const count_satuportal_iklan = count_satuportal_iklan_raw ? parseInt(count_satuportal_iklan_raw.count_data, 10) : 0;
+
+            const count_satuportal_pengumuman_raw = await Knex('tb_satuportal_pengumuman')
+                .count('id as count_data')
+                .first();
+            const count_satuportal_pengumuman = count_satuportal_pengumuman_raw ? parseInt(count_satuportal_pengumuman_raw.count_data, 10) : 0;
+
+            const count_satuportal_visitors_raw = await Knex('tb_satuportal_visitors')
+                .count('id as count_data')
+                .first();
+            const count_satuportal_visitors = count_satuportal_visitors_raw ? parseInt(count_satuportal_visitors_raw.count_data, 10) : 0;
+
+            const count_opendata_artikel_raw = await Knex('tb_opendata_artikel')
+                .count('id_artikel as count_data')
+                .first();
+            const count_opendata_artikel = count_opendata_artikel_raw ? parseInt(count_opendata_artikel_raw.count_data, 10) : 0;
+
+            const count_opendata_dataset_download_raw = await Knex('tb_opendata_dataset_download')
+                .count('id as count_data')
+                .first();
+            const count_opendata_dataset_download = count_opendata_dataset_download_raw ? parseInt(count_opendata_dataset_download_raw.count_data, 10) : 0;
+
+            const count_opendata_dataset_visitors_raw = await Knex('tb_opendata_dataset_visitors')
+                .count('id as count_data')
+                .first();
+            const count_opendata_dataset_visitors = count_opendata_dataset_visitors_raw ? parseInt(count_opendata_dataset_visitors_raw.count_data, 10) : 0;
+
+            const count_opendata_feedback_raw = await Knex('tb_opendata_feedback')
+                .count('id as count_data')
+                .first();
+            const count_opendata_feedback = count_opendata_feedback_raw ? parseInt(count_opendata_feedback_raw.count_data, 10) : 0;
+
+            const count_opendata_iklan_raw = await Knex('tb_opendata_iklan')
+                .count('id as count_data')
+                .first();
+            const count_opendata_iklan = count_opendata_iklan_raw ? parseInt(count_opendata_iklan_raw.count_data, 10) : 0;
+
+            const count_opendata_visitors_raw = await Knex('tb_opendata_visitors')
+                .count('id as count_data')
+                .first();
+            const count_opendata_visitors = count_opendata_visitors_raw ? parseInt(count_opendata_visitors_raw.count_data, 10) : 0;
+
+            const count_satupeta_artikel_raw = await Knex('tb_satupeta_artikel')
+                .count('id_artikel as count_data')
+                .first();
+            const count_satupeta_artikel = count_satupeta_artikel_raw ? parseInt(count_satupeta_artikel_raw.count_data, 10) : 0;
+
+            const count_satupeta_feedback_raw = await Knex('tb_satupeta_feedback')
+                .count('id as count_data')
+                .first();
+            const count_satupeta_feedback = count_satupeta_feedback_raw ? parseInt(count_satupeta_feedback_raw.count_data, 10) : 0;
+
+            const count_satupeta_iklan_raw = await Knex('tb_satupeta_iklan')
+                .count('id as count_data')
+                .first();
+            const count_satupeta_iklan = count_satupeta_iklan_raw ? parseInt(count_satupeta_iklan_raw.count_data, 10) : 0;
+
+            const count_satupeta_locations_raw = await Knex('tb_satupeta_locations')
+                .count('id_location as count_data')
+                .first();
+            const count_satupeta_locations = count_satupeta_locations_raw ? parseInt(count_satupeta_locations_raw.count_data, 10) : 0;
+
+            const count_satupeta_location_maplist_raw = await Knex('tb_satupeta_location_maplist')
+                .count('id_maplist as count_data')
+                .first();
+            const count_satupeta_location_maplist = count_satupeta_location_maplist_raw ? parseInt(count_satupeta_location_maplist_raw.count_data, 10) : 0;
+
+            const count_satupeta_location_maplist_download_raw = await Knex('tb_satupeta_location_maplist_download')
+                .count('id as count_data')
+                .first();
+            const count_satupeta_location_maplist_download = count_satupeta_location_maplist_download_raw ? parseInt(count_satupeta_location_maplist_download_raw.count_data, 10) : 0;
+
+            const count_satupeta_location_maplist_visitors_raw = await Knex('tb_satupeta_location_maplist_visitors')
+                .count('id as count_data')
+                .first();
+            const count_satupeta_location_maplist_visitors = count_satupeta_location_maplist_visitors_raw ? parseInt(count_satupeta_location_maplist_visitors_raw.count_data, 10) : 0;
+
+            const count_satupeta_location_points_raw = await Knex('tb_satupeta_location_points')
+                .count('id_location_point as count_data')
+                .first();
+            const count_satupeta_location_points = count_satupeta_location_points_raw ? parseInt(count_satupeta_location_points_raw.count_data, 10) : 0;
+
+            const count_satupeta_visitors_raw = await Knex('tb_satupeta_visitors')
+                .count('id as count_data')
+                .first();
+            const count_satupeta_visitors = count_satupeta_visitors_raw ? parseInt(count_satupeta_visitors_raw.count_data, 10) : 0;
+
+
+            return h.response({
+                //data: plainItem,
+                count_satuportal_iklan,count_satuportal_pengumuman,count_satuportal_visitors,
+                count_opendata_artikel,count_opendata_dataset_download,count_opendata_dataset_visitors,
+                count_opendata_feedback,count_opendata_iklan,count_opendata_visitors,
+                count_satupeta_artikel,count_satupeta_feedback,count_satupeta_iklan,count_satupeta_locations,
+                count_satupeta_location_maplist,count_satupeta_location_maplist_download,count_satupeta_location_maplist_visitors,
+                count_satupeta_location_points,count_satupeta_visitors
+            }).code(200);
+
+
+
+
+        }
+        catch (err) {
+            console.error('Error in view_ekosistem_setting:', err);
+            return h.response({ message: 'Internal Server Error' }).code(500);
+        }
+    },
+
+
     /* ------EKOSISTEM -------*/
     view_ekosistem_setting: async function (request, h) {
         try {
@@ -215,7 +329,7 @@ module.exports = {
                     const plainItem = { ...item };
                     if (item.images) {
                         try {
-                            plainItem.presignedUrl = await generatePresignedUrl(item.images, 60 * 5);
+                            plainItem.presignedUrl = await generatePresignedUrl(`tumb/` + item.images, 60 * 5);
                         }
                         catch (err) {
                             console.warn('⚠️ Gagal buat presigned URL:', err.message);
@@ -269,7 +383,7 @@ module.exports = {
                 const imageName = plainItem[key];
                 if (imageName) {
                     try {
-                        plainItem[urlKey] = await generatePresignedUrl(imageName, 60 * 5);
+                        plainItem[urlKey] = await generatePresignedUrl(`tumb/` + imageName, 60 * 5);
                     }
                     catch (err) {
                         console.warn(`⚠️ Gagal membuat URL untuk ${key}:`, err.message);
@@ -296,6 +410,7 @@ module.exports = {
         const tanggal = moment().format('YYYY-MM-DD');
 
         let filename = null;
+        let filename_tumb = null;
 
         // helper: stream → buffer
         const streamToBuffer = async (stream) => {
@@ -313,6 +428,7 @@ module.exports = {
                 const ext = path.extname(file.hapi.filename);
                 const safeTitle = sanitizeFileName(title);
                 filename = `satuportal_iklan/images/${tanggal}_${safeTitle}${ext}`;
+                filename_tumb = `tumb/satuportal_iklan/images/${tanggal}_${safeTitle}${ext}`;
 
                 let buffer;
 
@@ -330,6 +446,7 @@ module.exports = {
 
                 // pakai helper uploadFile
                 await uploadFile(buffer, filename, file.hapi.headers['content-type']);
+                await uploadFileTumb(buffer, filename_tumb, file.hapi.headers['content-type']);
             }
 
             // ============ Simpan ke DB ============
@@ -371,6 +488,7 @@ module.exports = {
             }
 
             let filename = null; // ✅ tambahkan ini
+            let filename_tumb = null; // ✅ tambahkan ini
 
             // ============ File Upload ============
             if (file && file.hapi && file.hapi.filename) {
@@ -386,6 +504,7 @@ module.exports = {
                 const ext1 = path.extname(file.hapi.filename);
                 const safeTitle = sanitizeFileName(title);
                 filename = `satuportal_iklan/images/${tanggal}_${safeTitle}${ext1}`;
+                filename_tumb = `tumb/satuportal_iklan/images/${tanggal}_${safeTitle}${ext1}`;
 
                 const fileData = file._data;
                 if (!fileData) {
@@ -393,6 +512,7 @@ module.exports = {
                 }
 
                 await uploadFile(fileData, filename, file.hapi.headers['content-type']);
+                await uploadFileTumb(fileData, filename_tumb, file.hapi.headers['content-type']);
             }
 
             // ============ Simpan ke DB ============
@@ -429,6 +549,7 @@ module.exports = {
             // Hapus file dari MinIO jika ada
             if (data.images) {
                 await deleteFile(data.images);
+                await deleteFile('tumb/' + data.images);
             }
 
             // Hapus dari database
@@ -488,7 +609,7 @@ module.exports = {
 
         }
         catch (err) {
-            console.error('❌ Gagal menghapus data:', err);
+            console.error('❌ Gagal menghapus dataku:', err);
             return h.response({ msg: 'Gagal menghapus data' }).code(500);
         }
     },
@@ -594,7 +715,7 @@ module.exports = {
                 }
 
                 try {
-                    return await generatePresignedUrl(filename, 60 * 5);
+                    return await generatePresignedUrl(`tumb/` + filename, 60 * 5);
                 }
                 catch (err) {
                     console.warn(`⚠️ Gagal buat presigned URL: ${filename} ->`, err.message);
@@ -653,7 +774,7 @@ module.exports = {
                 const imageName = plainItem[key];
                 if (imageName) {
                     try {
-                        plainItem[urlKey] = await generatePresignedUrl(imageName, 60 * 5);
+                        plainItem[urlKey] = await generatePresignedUrl(`tumb/` + imageName, 60 * 5);
                     }
                     catch (err) {
                         console.warn(`⚠️ Gagal membuat URL untuk ${key}:`, err.message);
@@ -853,6 +974,7 @@ module.exports = {
             for (const { filename } of filesToDelete) {
                 if (filename) {
                     await deleteFile(filename);
+                    await deleteFile(`tumb/` + filename);
                 }
             }
 
@@ -907,6 +1029,9 @@ module.exports = {
     },
     update_opendata_setting: async function (request, h) {
         const { id } = request.params;
+
+        console.log('id setting :' + id);
+
 
         const {
             bg_header,
@@ -1011,7 +1136,7 @@ module.exports = {
                     const plainItem = { ...item };
                     if (item.images) {
                         try {
-                            plainItem.presignedUrl = await generatePresignedUrl(item.images, 60 * 5);
+                            plainItem.presignedUrl = await generatePresignedUrl(`tumb/` + item.images, 60 * 5);
                         }
                         catch (err) {
                             console.warn('⚠️ Gagal buat presigned URL:', err.message);
@@ -1066,7 +1191,7 @@ module.exports = {
                 const imageName = plainItem[key];
                 if (imageName) {
                     try {
-                        plainItem[urlKey] = await generatePresignedUrl(imageName, 60 * 5);
+                        plainItem[urlKey] = await generatePresignedUrl(`tumb/` + imageName, 60 * 5);
                     }
                     catch (err) {
                         console.warn(`⚠️ Gagal membuat URL untuk ${key}:`, err.message);
@@ -1092,6 +1217,7 @@ module.exports = {
         const tanggal = moment().format('YYYY-MM-DD');
 
         let filename = null;
+        let filename_tumb = null;
 
         // helper: stream → buffer
         const streamToBuffer = async (stream) => {
@@ -1109,6 +1235,7 @@ module.exports = {
                 const ext = path.extname(file.hapi.filename);
                 const safeTitle = sanitizeFileName(title);
                 filename = `opendata/iklan/images/${tanggal}_${safeTitle}${ext}`;
+                filename_tumb = `tumb/opendata/iklan/images/${tanggal}_${safeTitle}${ext}`;
 
                 let buffer;
 
@@ -1126,6 +1253,7 @@ module.exports = {
 
                 // pakai helper uploadFile
                 await uploadFile(buffer, filename, file.hapi.headers['content-type']);
+                await uploadFileTumb(buffer, filename_tumb, file.hapi.headers['content-type']);
             }
 
             // ============ Simpan ke DB ============
@@ -1165,12 +1293,14 @@ module.exports = {
             }
 
             let filename = null; // ✅ tambahkan ini
+            let filename_tumb = null; // ✅ tambahkan ini
 
             // ============ File Upload ============
             if (file && file.hapi && file.hapi.filename) {
                 if (oldData.images) {
                     try {
                         await deleteFile(oldData.images);
+                        await deleteFile(`tumb` + oldData.images);
                     }
                     catch (err) {
                         console.warn('⚠️ Gagal hapus file lama berita:', err.message);
@@ -1180,6 +1310,7 @@ module.exports = {
                 const ext1 = path.extname(file.hapi.filename);
                 const safeTitle = sanitizeFileName(title);
                 filename = `opendata/iklan/images/${tanggal}_${safeTitle}${ext1}`;
+                filename_tumb = `tumb/opendata/iklan/images/${tanggal}_${safeTitle}${ext1}`;
 
                 const fileData = file._data;
                 if (!fileData) {
@@ -1187,6 +1318,7 @@ module.exports = {
                 }
 
                 await uploadFile(fileData, filename, file.hapi.headers['content-type']);
+                await uploadFileTumb(fileData, filename_tumb, file.hapi.headers['content-type']);
             }
 
             // ============ Simpan ke DB ============
@@ -1223,6 +1355,7 @@ module.exports = {
 
             if (data.images) {
                 await deleteFile(data.images);
+                await deleteFile(`tumb/` + data.images);
             }
 
             await Knex('tb_opendata_iklan').where({ id }).del();
@@ -1794,6 +1927,7 @@ module.exports = {
 
             if (data.images) {
                 await deleteFile(data.images);
+                await deleteFile(`tumb/` + data.images);
             }
 
             await Knex('tb_satupeta_iklan').where({ id }).del();
@@ -1857,7 +1991,7 @@ module.exports = {
                         if (item[key]) {
                             try {
                                 plainItem[`presignedUrl_${i + 1}`] = await generatePresignedUrl(item[key], 60 * 5);
-                                plainItem[`presignedUrl_Tumb_${i + 1}`] = await generatePresignedUrl(`tumb` + item[key], 60 * 5);
+                                plainItem[`presignedUrl_Tumb_${i + 1}`] = await generatePresignedUrl(`tumb/` + item[key], 60 * 5);
                             }
                             catch (err) {
                                 console.warn(`⚠️ Gagal buat presigned URL untuk ${key}:`, err.message);
@@ -1874,7 +2008,7 @@ module.exports = {
                         if (item[key]) {
                             try {
                                 plainItem[`presignedUrl_${key.split('_')[1]}`] = await generatePresignedUrl(item[key], 60 * 5);
-                                plainItem[`presignedUrl_Tumb_${key.split('_')[1]}`] = await generatePresignedUrl(`tumb` + item[key], 60 * 5);
+                                plainItem[`presignedUrl_Tumb_${key.split('_')[1]}`] = await generatePresignedUrl(`tumb/` + item[key], 60 * 5);
                             }
                             catch (err) {
                                 console.warn(`⚠️ Gagal buat presigned URL untuk ${key}:`, err.message);
@@ -1939,7 +2073,7 @@ module.exports = {
                         if (item[key]) {
                             try {
                                 plainItem[`presignedUrl_${i + 1}`] = await generatePresignedUrl(item[key], 60 * 5);
-                                plainItem[`presignedUrl_Tumb_${i + 1}`] = await generatePresignedUrl(`tumb` + item[key], 60 * 5);
+                                plainItem[`presignedUrl_Tumb_${i + 1}`] = await generatePresignedUrl(`tumb/` + item[key], 60 * 5);
                             }
                             catch (err) {
                                 console.warn(`⚠️ Gagal buat presigned URL untuk ${key}:`, err.message);
@@ -1956,11 +2090,12 @@ module.exports = {
                         if (item[key]) {
                             try {
                                 plainItem[`presignedUrl_${key.split('_')[1]}`] = await generatePresignedUrl(item[key], 60 * 5);
-                                plainItem[`presignedUrl_Tumb_${key.split('_')[1]}`] = await generatePresignedUrl(`tumb` + item[key], 60 * 5);
+                                plainItem[`presignedUrl_Tumb_${key.split('_')[1]}`] = await generatePresignedUrl(`tumb/` + item[key], 60 * 5);
                             }
                             catch (err) {
                                 console.warn(`⚠️ Gagal buat presigned URL untuk ${key}:`, err.message);
                                 plainItem[`presignedUrl_${key.split('_')[1]}`] = null;
+                                plainItem[`presignedUrl_Tumb_${key.split('_')[1]}`] = null;
                             }
                         }
                         else {
@@ -1992,14 +2127,17 @@ module.exports = {
                     if (data[key]) {
                         try {
                             data[`presignedUrl_${key.split('_')[1]}`] = await generatePresignedUrl(data[key], 60 * 5);
+                            data[`presignedUrl_Tumb_${key.split('_')[1]}`] = await generatePresignedUrl(`tumb/` + data[key], 60 * 5);
                         }
                         catch (err) {
                             console.warn(`⚠️ Gagal buat presigned URL untuk ${key}:`, err.message);
                             data[`presignedUrl_${key.split('_')[1]}`] = null;
+                            //data[`presignedUrl_Tumb_${key.split('_')[1]}`] = null;
                         }
                     }
                     else {
                         data[`presignedUrl_${key.split('_')[1]}`] = null;
+                        data[`presignedUrl_Tumb_${key.split('_')[1]}`] = null;
                     }
                 }
             };
@@ -2028,6 +2166,9 @@ module.exports = {
             const { title } = request.params;
             const titleAsText = decodeURIComponent(title).replace(/-/g, ' ');
 
+            console.log('id' + titleAsText);
+
+
             const sql = internals_komponen.sqlBaseView.clone();
             const item = await sql
                 .whereRaw('LOWER(tb_komponen.title) LIKE ?', [`%${titleAsText.toLowerCase()}%`])
@@ -2044,14 +2185,16 @@ module.exports = {
                 if (item[key]) {
                     try {
                         plainItem[`presignedUrl_${key.split('_')[1]}`] = await generatePresignedUrl(item[key], 60 * 5);
+                        plainItem[`presignedUrl_Tumb_${key.split('_')[1]}`] = await generatePresignedUrl(`tumb` + item[key], 60 * 5);
                     }
                     catch (err) {
                         console.warn(`⚠️ Gagal buat presigned URL (${key}):`, err.message);
                         plainItem[`presignedUrl_${key.split('_')[1]}`] = null;
+                        plainItem[`presignedUrl_Tumb_${key.split('_')[1]}`] = null;
                     }
                 }
                 else {
-                    plainItem[`presignedUrl_${key.split('_')[1]}`] = null;
+                    plainItem[`presignedUrl_Tumb_${key.split('_')[1]}`] = null;
                 }
             }
 
@@ -2129,6 +2272,8 @@ module.exports = {
             if (linked !== '') {
                 insert.linked = linked;
             }
+
+
 
             await Knex('tb_komponen').insert({
                 kategori,
@@ -2248,7 +2393,7 @@ module.exports = {
             for (const key of fileKeys) {
                 if (data[key]) {
                     await deleteFile(data[key]);
-                    await deleteFile(data[`tumb` + key]);
+                    await deleteFile(`tumb/` + data[key]);
                 }
             }
 
@@ -2426,7 +2571,7 @@ module.exports = {
                 const plainItem = data.toJSON ? data.toJSON() : { ...data };
                 await Promise.all(keys.map(async ({ key, urlKey }) => {
                     const fileName = plainItem[key];
-                    plainItem[urlKey] = fileName ? await generatePresignedUrl(fileName, 60 * 5) : null;
+                    plainItem[urlKey] = fileName ? await generatePresignedUrl(`tumb/` + fileName, 60 * 5) : null;
                 }));
                 return plainItem;
             };
@@ -2473,7 +2618,8 @@ module.exports = {
                 internals_komponen.sqlBaseView.clone().where('tb_komponen.kategori', 'Gambar Opendata Kategoribidang'),
                 [
                     { key: 'images_a', urlKey: 'presignedUrl1' },
-                    { key: 'images_b', urlKey: 'presignedUrl2' }
+                    { key: 'images_b', urlKey: 'presignedUrl2' },
+                    { key: 'contents', urlKey: 'contents' }
                 ]
             );
 
@@ -2795,6 +2941,34 @@ module.exports = {
         catch (err) {
             console.error('Error in view_menu_satupeta2:', err);
             return h.response({ message: 'Internal Server Error' }).code(500);
+        }
+    },
+
+    view_satker: async function (request, h) {
+        const queryUrl = { ...request.query };
+        const search_satker = queryUrl.search_satker;
+        try {
+
+            // 1. Ambil bidang urusan
+            let query = Knex('tb_opd')
+                .select('id_opd', 'nama_opd')
+                .orderBy('nama_opd', 'asc');
+
+            if (search_satker?.trim()) {
+                query = query.where('tb_opd.id_opd', search_satker.trim());
+            }
+
+            const resultsatker = await query;
+
+
+
+            return h.response({
+                resultsatker
+            }).code(200);
+        }
+        catch (error) {
+            console.error('❌ Error in getMapsetUnsur:', error);
+            return h.response({ msg: error.message }).code(500);
         }
     }
 
