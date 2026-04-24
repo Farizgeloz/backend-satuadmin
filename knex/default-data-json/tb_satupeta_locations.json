@@ -1,0 +1,92 @@
+[
+	{
+		"id_location": 1,
+		"nama_location": "Sekolah",
+		"satker_id": 1,
+		"sektor_id": 1,
+		"admin": 0,
+		"visibilitas": "Draft",
+		"created_at": "2025-05-31 07:26:54",
+		"updated_at": "2025-12-09 04:52:15"
+	},
+	{
+		"id_location": 5,
+		"nama_location": "Rumah Sakit",
+		"satker_id": 3,
+		"sektor_id": 2,
+		"admin": 13,
+		"visibilitas": "Pending",
+		"created_at": "2025-05-31 13:32:03",
+		"updated_at": "2025-12-09 12:59:08"
+	},
+	{
+		"id_location": 6,
+		"nama_location": "Pasar Besar",
+		"satker_id": 9,
+		"sektor_id": 3,
+		"admin": 1,
+		"visibilitas": "Draft",
+		"created_at": "2025-05-31 13:32:13",
+		"updated_at": "2025-12-09 04:52:17"
+	},
+	{
+		"id_location": 7,
+		"nama_location": "Gedung Pemerintah",
+		"satker_id": 20,
+		"sektor_id": 5,
+		"admin": 1,
+		"visibilitas": "Draft",
+		"created_at": "2025-06-25 04:27:43",
+		"updated_at": "2025-12-09 04:52:17"
+	},
+	{
+		"id_location": 8,
+		"nama_location": "Kantor Desa",
+		"satker_id": 10,
+		"sektor_id": 5,
+		"admin": 0,
+		"visibilitas": "Draft",
+		"created_at": "2025-06-25 18:14:20",
+		"updated_at": "2025-12-09 04:52:18"
+	},
+	{
+		"id_location": 9,
+		"nama_location": "Wisata Air Terjun & Ranu",
+		"satker_id": 19,
+		"sektor_id": 4,
+		"admin": 1,
+		"visibilitas": "Draft",
+		"created_at": "2025-06-25 18:15:52",
+		"updated_at": "2025-12-09 04:52:19"
+	},
+	{
+		"id_location": 10,
+		"nama_location": "Wisata Pantai",
+		"satker_id": 19,
+		"sektor_id": 4,
+		"admin": 1,
+		"visibilitas": "Draft",
+		"created_at": "2025-09-11 08:42:56",
+		"updated_at": "2025-12-09 04:52:19"
+	},
+	{
+		"id_location": 16,
+		"nama_location": "Puskesmas",
+		"satker_id": 3,
+		"sektor_id": 2,
+		"admin": 14,
+		"visibilitas": "Verified",
+		"created_at": "2025-09-08 15:07:48",
+		"updated_at": "2025-12-09 12:48:04"
+	},
+	{
+		"id_location": 19,
+		"nama_location": "Wisata Panorama",
+		"satker_id": 19,
+		"sektor_id": 4,
+		"admin": 1,
+		"visibilitas": "Draft",
+		"created_at": "2025-09-11 16:10:49",
+		"updated_at": "2025-12-09 04:52:21"
+	}
+]

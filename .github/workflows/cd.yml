@@ -1,0 +1,36 @@
+name: Continuous Deployment (API)
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20.x
+
+    - name: Install Dependencies (CI Check)
+      run: npm install
+
+    - name: Deploy to VPS via SSH
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.DEV_SERVER_HOST }}
+        username: ${{ secrets.DEV_SERVER_USERNAME }}
+        key: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
+        port: 22
+        script: |
+          cd ~/api-app
+          git pull origin main
+          npm install --production
+          pm2 reload pm2-config.json --env production
+          pm2 save

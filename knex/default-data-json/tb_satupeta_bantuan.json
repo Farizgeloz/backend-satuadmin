@@ -1,0 +1,74 @@
+[
+	{
+		"id": 1,
+		"kategori": "Satupeta",
+		"seksi": "arti_satupeta",
+		"title": "Apa itu Satupeta ??",
+		"content": "<p>Satupeta adalah sistem atau portal yang menyajikan data spasial (peta) dari berbagai sumber dalam satu platform terpadu agar bisa diakses, dibagi, dan digunakan bersama secara efisien.</p>",
+		"image": null,
+		"admin": 1,
+		"visibilitas": "Publik",
+		"created_at": "2025-09-23 20:34:10",
+		"updated_at": "2025-11-18 22:32:36"
+	},
+	{
+		"id": 2,
+		"kategori": "Satupeta",
+		"seksi": "mekanisme",
+		"title": "Mekanisme Pengumpulan Data",
+		"content": "Metode pengumpulan data dalam Satupeta meliputi beberapa tahapan utama, yaitu inventarisasi data geospasial dari berbagai instansi, survei dan pengukuran lapangan (menggunakan GPS atau drone), serta pemanfaatan citra satelit melalui penginderaan jauh. Selain itu, data dari peta analog didigitalisasi, lalu dilakukan sinkronisasi dan validasi antar instansi untuk menghindari tumpang tindih. Data juga bisa dikumpulkan melalui partisipasi masyarakat (crowdsourcing) dan integrasi dari sistem lain seperti SIG atau Satu Data. Semua data dikemas dalam format standar seperti GeoJSON, shapefile, atau WMS/WFS, mengacu pada SNI dan ISO agar dapat digunakan bersama secara akurat dan konsisten.",
+		"image": null,
+		"admin": 0,
+		"visibilitas": null,
+		"created_at": "2025-09-23 20:34:10",
+		"updated_at": "2025-11-18 15:03:44"
+	},
+	{
+		"id": 3,
+		"kategori": "Satupeta",
+		"seksi": "regulasi",
+		"title": "Regulasi dan Kebijakan pendukung",
+		"content": "<p><strong>Undang‑Undang Nomor 4 Tahun 2011 tentang Informasi Geospasial</strong></p><p> Landasan hukum utama penyelenggaraan informasi geospasial di Indonesia.</p><p> <a href=\"https://peraturan.bpk.go.id/Details/39136\" rel=\"noopener noreferrer\" target=\"_blank\">Link dokumen</a></p><p> <a href=\"https://peraturan.bpk.go.id/Details/39136/uu-no-4-tahun-2011?utm_source=chatgpt.com\" rel=\"noopener noreferrer\" target=\"_blank\">Peraturan BPK</a></p><p><a href=\"https://peraturan.bpk.go.id/Details/39136/uu-no-4-tahun-2011?utm_source=chatgpt.com\" rel=\"noopener noreferrer\" target=\"_blank\">+1</a></p><p><strong>Peraturan Presiden Nomor 9 Tahun 2016 tentang Percepatan Pelaksanaan Kebijakan Satu Peta</strong></p><p> Mengatur percepatan pelaksanaan Kebijakan Satu Peta yang mencakup penyusunan, penyelarasan, integrasi, dan berbagi pakai data geospasial.</p><p> <a href=\"https://peraturan.bpk.go.id/Home/Details/38518/perpres-no-9-tahun-2016?utm_source=chatgpt.com\" rel=\"noopener noreferrer\" target=\"_blank\">Link dokumen</a></p><p> <a href=\"https://peraturan.bpk.go.id/Home/Details/38518/perpres-no-9-tahun-2016?utm_source=chatgpt.com\" rel=\"noopener noreferrer\" target=\"_blank\">Peraturan BPK</a></p><p><a href=\"https://peraturan.bpk.go.id/Home/Details/38518/perpres-no-9-tahun-2016?utm_source=chatgpt.com\" rel=\"noopener noreferrer\" target=\"_blank\">+1</a></p><p><strong>Peraturan Badan Informasi Geospasial Nomor 15 Tahun 2021 tentang Jaringan Informasi Geospasial Nasional (JIGN)</strong></p><p> Mengatur tata kelola jaringan berbagi pakai data geospasial nasional, termasuk standar interoperabilitas, metadata dan katalog geospasial.</p><p> <a href=\"https://persetujuan.big.go.id/?utm_source=chatgpt.com\" rel=\"noopener noreferrer\" target=\"_blank\">Link dokumen</a></p><p> <a href=\"https://persetujuan.big.go.id/?utm_source=chatgpt.com\" rel=\"noopener noreferrer\" target=\"_blank\">Badan Informasi Geospasial</a></p><p><a href=\"https://persetujuan.big.go.id/?utm_source=chatgpt.com\" rel=\"noopener noreferrer\" target=\"_blank\">+1</a></p><p><strong>Peraturan Presiden Nomor 95 Tahun 2018 tentang Sistem Pemerintahan Berbasis Elektronik (SPBE)</strong></p><p> Mendorong integrasi sistem informasi pemerintah termasuk integrasi data geospasial dalam portal dan layanan digital pemerintah.</p><p> Link dokumen</p><p> <a href=\"https://jdih.kemenkeu.go.id/dok/e2b1f783-c5b8-427f-8edc-0d5697828e05?utm_source=chatgpt.com\" rel=\"noopener noreferrer\" target=\"_blank\">Kementerian Keuangan Republik Indonesia</a></p><p><a href=\"https://jdih.kemenkeu.go.id/dok/e2b1f783-c5b8-427f-8edc-0d5697828e05?utm_source=chatgpt.com\" rel=\"noopener noreferrer\" target=\"_blank\">+1</a></p><p><strong>Peraturan Pemerintah Nomor 45 Tahun 2021 tentang Penyelenggaraan Informasi Geospasial</strong></p><p> Aturan teknis pelaksanaan Undang-Undang Informasi Geospasial, mencakup penyusunan, pertukaran dan penyampaian data dasar dan tematik geospasial.</p><p> Link dokumen</p><p> (dokumen spesifik bisa dicek di basis data regulasi) <a href=\"https://jdih.jabarprov.go.id/page/info/produk/16005?tentang=peraturan-pemerintah-jawa-barat-nomor-tentang-pelaksanaan-undang-undang-nomor-4-tahun-2011-tentang-informasi-geospasial&amp;utm_source=chatgpt.com\" rel=\"noopener noreferrer\" target=\"_blank\">jdihjabar</a></p><p><strong>Undang‑Undang Nomor 14 Tahun 2008 tentang Keterbukaan Informasi Publik (KIP)</strong></p><p> Menjamin keterbukaan data pemerintah termasuk data geospasial untuk publikasi dan akses masyarakat.</p><p> <a href=\"https://peraturan.bpk.go.id\" rel=\"noopener noreferrer\" target=\"_blank\">Link dokumen</a></p><p> — (cari “UU 14/2008” di portal)</p><p><strong>Peraturan Menteri ATR/BPN tentang Peta Bidang Tanah &amp; Pertanahan Digital</strong></p><p> Mengatur standardisasi peta bidang tanah dan pertanahan digital yang mendukung integrasi ke dalam Kebijakan Satu Peta.</p><p> <a href=\"https://www.atrbpn.go.id\" rel=\"noopener noreferrer\" target=\"_blank\">Link dokumen</a></p><p> — (dokumen spesifik dapat diakses di situs ATR/BPN)</p><p><strong>Instruksi Presiden Nomor 2 Tahun 2018 tentang Percepatan Kebijakan Satu Peta</strong></p><p> Instruksi kepada kementerian/lembaga untuk mempercepat penyediaan, penyamaan referensi, serta pemanfaatan data geospasial nasional.</p><p> <a href=\"https://setkab.go.id/menuju-satu-peta-one-map-penetapan-peraturan-presiden-nomor-9-tahun-2016-tentang-percepatan-pelaksanaan-kebijakan-satu-peta/?utm_source=chatgpt.com\" rel=\"noopener noreferrer\" target=\"_blank\">Link dokumen</a></p><p> <a href=\"https://setkab.go.id/perpres-no-92016-pemerintah-bentuk-tim-percepatan-kebijakan-satu-peta/?utm_source=chatgpt.com\" rel=\"noopener noreferrer\" target=\"_blank\">Sekretariat Kabinet Republik Indonesia</a></p><p><strong>Peraturan Kominfo Nomor 5 Tahun 2020 tentang Pengelolaan Data dan Sistem Informasi Pemerintah</strong></p><p> Mengatur penyediaan data pemerintah yang dapat diakses publik, termasuk integrasi data spasial dalam platform data nasional.</p><p> <a href=\"https://peraturan.bpk.go.id\" rel=\"noopener noreferrer\" target=\"_blank\">Link dokumen</a></p><p> — (cari “Permenkominfo 5/2020”)</p><p><strong>Peraturan Menteri PANRB Nomor 36 Tahun 2019 tentang Open Government Indonesia (OGI)</strong></p><p> Regulasi mengenai penyelenggaraan pemerintahan terbuka di Indonesia, termasuk akses data, transparansi, dan partisipasi publik terkait informasi geospasial.</p><p> <a href=\"https://www.menpan.go.id\" rel=\"noopener noreferrer\" target=\"_blank\">Link dokumen</a></p><p> — (dokumen tersedia di situs MenpanRB)</p>",
+		"image": null,
+		"admin": 1,
+		"visibilitas": "Publik",
+		"created_at": "2025-09-23 20:34:10",
+		"updated_at": "2025-11-18 22:37:03"
+	},
+	{
+		"id": 4,
+		"kategori": "Mapset",
+		"seksi": "arti_mapset",
+		"title": "Apa itu Mapset?",
+		"content": "Dataset merupakan sekumpulan data  yang terorganisir dalam sebuah format tertentu agar mudah diakses, dianalisis, dan digunakan kembali",
+		"image": null,
+		"admin": 0,
+		"visibilitas": null,
+		"created_at": "2025-09-23 20:34:10",
+		"updated_at": "2025-11-18 15:05:25"
+	},
+	{
+		"id": 5,
+		"kategori": "Mapset",
+		"seksi": "cari_mapset",
+		"title": "Cara mencari Mapset",
+		"content": "<p><b>Cara Pertama: Melalui halaman Beranda</b></p>\r\n<ol>\r\n  <li>Masukkan kata kunci pencarian pada kolom \"Cari & Unduh Dataset\", lalu tekan tombol Cari.</li>\r\n  <li>Anda akan diarahkan pada halaman “Pencarian” di mana hasil pencarian berdasarkan keywords akan ditampilkan pada halaman tersebut.</li>\r\n  <li>Juga terdapat filter “Pilih OPD” dan “Pilih Priode” untuk membantu pencarian Anda agar lebih spesifik.</li>\r\n</ol>\r\n\r\n<p><b>Cara Kedua: Melalui halaman Koleksi Dataset</b></p>\r\n<ol>\r\n  <li>Pilih menu “Koleksi Dataset”.</li>\r\n  <li>Masukkan kata kunci pencarian pada kolom “Masukkan Kata kunci”, lalu tekan tombol “Cari”.</li>\r\n  <li>Hasil pencarian Anda akan muncul daftar dataset sesuai kata kunci yang dimasukkan.</li>\r\n  <li>Juga terdapat filter “Pilih OPD” dan “Pilih Priode” untuk membantu pencarian Anda agar lebih spesifik.</li>\r\n</ol>\r\n\r\n<>\r\n<p><b>Cara Ketiga: Melalui halaman Sektor</b></p>\r\n<ol>\r\n  <li>Arahkan pada menu “Sektor”.</li>\r\n  <li>Pilih Sektor (misal: Pendidikan).</li>\r\n  <li>Masukkan kata kunci pencarian pada kolom “Masukkan Kata kunci”, lalu tekan tombol “Cari”.</li>\r\n  <li>Hasil pencarian Anda akan muncul daftar dataset sesuai sektor yang dipilih dan kata kunci yang dimasukkan.</li>\r\n  <li>Juga terdapat filter “Pilih OPD” dan “Pilih Priode” untuk membantu pencarian Anda agar lebih spesifik.</li>\r\n</ol>\r\n</>",
+		"image": null,
+		"admin": 0,
+		"visibilitas": null,
+		"created_at": "2025-09-23 20:34:10",
+		"updated_at": "2025-11-18 15:05:38"
+	},
+	{
+		"id": 6,
+		"kategori": "Mapset",
+		"seksi": "unduh_mapset",
+		"title": "Cara mengunduh mapset",
+		"content": "<p><b>Untuk mengunduh Dataset dapat dilakukan dengan cara sebagai berikut:</b></p>\r\n<ol>\r\n  <li>Pilih salah satu dataset yang ingin diunduh.</li>\r\n  <li>Kemudian Anda akan diarahkan pada laman “Detail Dataset”.</li>\r\n  <li>Arahkan pada tombol “Download Data”.</li>\r\n  <li>Pilih dan klik tombol format dataset yang diinginkan (CSV/ Excel/ Json).</li>\r\n</ol>",
+		"image": null,
+		"admin": 0,
+		"visibilitas": null,
+		"created_at": "2025-09-23 20:34:10",
+		"updated_at": "2025-11-18 15:05:50"
+	}
+]

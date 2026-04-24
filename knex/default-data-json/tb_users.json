@@ -1,0 +1,72 @@
+[
+	{
+		"id": 1,
+		"uuid": "a41a650b-c5c4-42fd-be12-605b9532b8e2",
+		"name": "Super Admin",
+		"nick": "Super",
+		"email": "super@gmail.com",
+		"password": "$argon2id$v=19$m=65536,t=3,p=4$y352vio8qwxMzkjL4rxCAw$wZ6E0rejnyoxZdf7qj3ARSFCA6lgNi/4V7UOnV6nhhk",
+		"role": "Super Admin",
+		"opd_id": "",
+		"jabatan": "",
+		"admin": 1,
+		"created_at": "2025-04-04 15:08:00",
+		"updated_at": "2025-12-09 08:20:14"
+	},
+	{
+		"id": 9,
+		"uuid": "487ac158-c354-4b53-8322-4da307e113da",
+		"name": "admin",
+		"nick": "admin",
+		"email": "admin@gmail.com",
+		"password": "$argon2id$v=19$m=65536,t=3,p=4$5Apjjjbm+fh/QemqXDFYSw$pU/s7tkRuzTFijl9rsPA7e8mgxNuA9cLKq/8nBLiloU",
+		"role": "Admin",
+		"opd_id": "",
+		"jabatan": "Eksekutif",
+		"admin": 1,
+		"created_at": "2025-05-25 22:09:34",
+		"updated_at": "2025-12-09 08:19:03"
+	},
+	{
+		"id": 11,
+		"uuid": "ef398a3f-7172-422c-969d-71febfbcb180",
+		"name": "operaopd",
+		"nick": "operaopd",
+		"email": "operaopd@gmail.com",
+		"password": "$argon2id$v=19$m=65536,t=3,p=4$J/TYnZMNN8v7TfMHekvhBQ$XAN/oBPmTp43xekQ8rq87dONMpf3sSEvUp9ib+CHwxQ",
+		"role": "Operator Opd",
+		"opd_id": "3",
+		"jabatan": "Operator",
+		"admin": 1,
+		"created_at": "2025-06-03 11:30:08",
+		"updated_at": "2025-12-17 03:07:30"
+	},
+	{
+		"id": 13,
+		"uuid": "70f88ecc-1cb6-4c90-a5e4-8a0ea8585778",
+		"name": "veriopd",
+		"nick": "veriopd",
+		"email": "veriopd@gmail.com",
+		"password": "$argon2id$v=19$m=65536,t=3,p=4$FqsjY4p06GJCpPiYty/nxQ$k1K66f+F6GbOL97ipmfz5ErMjs42nLcQbL1fF8d4iuw",
+		"role": "Verifikator Opd",
+		"opd_id": "3",
+		"jabatan": null,
+		"admin": 1,
+		"created_at": "2025-12-09 08:15:26",
+		"updated_at": "2025-12-09 08:19:31"
+	},
+	{
+		"id": 14,
+		"uuid": "9e6dccbd-fb98-4d7d-95c1-ceba270675da",
+		"name": "opera",
+		"nick": "opera",
+		"email": "opera@gmail.com",
+		"password": "$argon2id$v=19$m=65536,t=3,p=4$9VQ0dhqpqQjlVGk5PrGZ3A$7StestN/d1Kl8PKirX3xeDpm2txj4UcPmfrf9Jab2Oc",
+		"role": "Operator",
+		"opd_id": "",
+		"jabatan": null,
+		"admin": 1,
+		"created_at": "2025-12-09 08:16:21",
+		"updated_at": "2025-12-09 08:16:21"
+	}
+]

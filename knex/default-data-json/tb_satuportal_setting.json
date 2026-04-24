@@ -1,0 +1,17 @@
+[
+	{
+		"id": 1,
+		"bg_header": "#003577",
+		"bg_body": "#0D47A1",
+		"bg_title": "#0D47A1",
+		"bg_content": "#0D47A1",
+		"bg_content2": null,
+		"bg_content3": null,
+		"bg_input": null,
+		"bg_footer": null,
+		"color_title": "#003577",
+		"color_date": "#B71C1C",
+		"created_at": "2025-09-26 13:15:08",
+		"updated_at": "2025-11-13 15:58:09"
+	}
+]
